@@ -8,11 +8,6 @@ body {
     color: #5a5a5a;
 }
 
-a {
-    color: #5a5a5a;
-    text-decoration: none;
-}
-
 .line{
     height: 3px;
     background: black;
@@ -48,7 +43,13 @@ a {
     width: 400px;
 }
 
-content:hover {
+a {
+    color: #5a5a5a;
+    text-decoration: none;
+    background-color: aqua;
+}
+
+a:hover {
     background-color: yellow;
     text-decoration: bold;
 }
