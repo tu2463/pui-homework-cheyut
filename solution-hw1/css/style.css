@@ -1,0 +1,207 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial;
+    font-size: 30px;
+    color: #5a5a5a;
+}
+
+a {
+    color: #5a5a5a;
+    text-decoration: none;
+}
+
+
+.line{
+    height: 3px;
+    background: black;
+}
+
+.logo {
+    width: 400px;
+    margin: 30px 20px 10px auto;
+}
+
+.PRODUCTS-selected {
+    font-weight: 900;
+    margin: 20px auto 20px auto;
+    width: 180px;
+    background-color: yellow;
+}
+
+.CART-unselected {
+    font-weight: 200;
+    margin: 20px auto 20px auto;
+    width: 90px;
+}
+
+.intro-gallery {
+    font-size: 150%;
+    font-weight: 400;
+    margin: 90px auto 20px auto;
+    width: 620px;
+}
+
+.content {
+    margin: 20px auto 20px auto;
+    width: 400px;
+}
+
+content:hover {
+    background-color: yellow;
+    text-decoration: bold;
+}
+
+.roll-img {
+    height: 400px;
+    width: 400px;
+    margin: 40px auto 20px auto;
+}
+
+.name {
+    text-decoration: underline;
+    margin-bottom: 5px;
+}
+
+
+/* Below codes are for product detail page.html */
+
+.intro-detail {
+    font-size: 150%;
+    font-weight: 400;
+    margin: 90px auto 20px auto;
+    width: 450px;
+    background-color: yellow;
+}
+
+.content-detail {
+    margin: 20px auto 100px auto;
+    width: 600px;
+}
+
+.description {
+    width: 350px;
+    margin: 20px auto 20px auto;
+}
+
+.detail-img {
+    height: 600px;
+    margin: 20px auto 10px auto;
+}
+
+.option-group {
+    margin: 20px auto 0px auto;
+    width: 350px;
+}
+
+.option {
+    border: 3;
+    padding: 5px;
+    margin-top: 5px;
+    width: 350px;
+    font-size: 30px;
+    color: #5a5a5a;
+}
+
+select {
+    height: 55px;
+    border: 5;
+}
+
+.addcart {
+    font-weight: 900;
+    margin: 70px auto 0px auto;
+    width: 350px;
+    display: flex;
+}
+
+.addcart-price {
+    margin-left: auto;
+    margin-right: 20px;
+    padding: 11px;
+    color: black;
+}
+
+.addcart button {
+    font-weight: 900;
+    background: yellow;
+    padding: 5px;
+    width: 60%;
+    height: 55px;
+    font-size: 30px;
+    border: 5;
+    margin: 0px 0px 0px auto;
+}
+
+/* Below codes are for shopping cart.html */
+.PRODUCTS-unselected {
+    font-weight: 200;
+    margin: 20px auto 20px auto;
+    width: 180px;
+}
+
+.CART-selected {
+    font-weight: 900;
+    margin: 20px auto 20px auto;
+    width: 90px;
+    background-color: yellow;
+}
+
+.intro-cart {
+    font-size: 150%;
+    font-weight: 400;
+    margin: 90px auto 20px auto;
+    width: 300px;
+}
+
+.cart-item {
+    margin: 30px auto 10px auto;
+    width: 200px;
+}
+
+.cart-img {
+    width: 200px;
+}
+
+.cart-text {
+    text-align: center;
+    margin-bottom: 90px;
+}
+
+.remove {
+    text-decoration: underline;
+    font-size: 50%;
+    margin-bottom: 30px;
+}
+
+.description {
+    margin-bottom: 0px;
+    margin-top: 0px;
+    width: 500px;
+}
+
+.cart-price {
+    font-size: 110%;
+    margin: 30px auto 30px auto;
+    text-align: center;
+}
+
+.short-line{
+    height: 4px;
+    background: black;
+    width: 75%;
+    margin: 30px auto 30px auto;
+}
+
+.cart-price button {
+    font-weight: 900;
+    background: yellow;
+    padding: 5px;
+    width: 200px;
+    height: 55px;
+    font-size: 30px;
+    border: 5;
+    margin: 20px auto 10px auto;
+}
