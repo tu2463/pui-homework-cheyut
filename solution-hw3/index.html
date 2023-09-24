@@ -2,14 +2,14 @@
 <html lang="en">
   <meta charset="UTF-8">
   <head>
-    <title>Product Gallery</title>
+    <title>Product Detail Page</title>
     <link rel="stylesheet" href="css/style.css">
+    <script defer src="js/app.js"></script>
   </head>
-  
-  <body>
 
+  <body>
     <header>
-      <a href = "index.html">
+      <a href = "product gallery.html">
         <img class="logo" src="../assets/logo/logo-01.svg"/>
       </a>
 
@@ -30,68 +30,48 @@
         <div class = "line"></div>
         
         <div class = "intro">
-          Our hand-made cinnamon rolls
+          Original cinnamon roll
         </div>
       </div>
     </header>
-    
-    <div id = row class = "row-1">
 
-        <a class = "content-link" href = "product detail page.html">
-          <img class="gallery-img" src="../assets/products/original-cinnamon-roll.jpg" border = 3/>
-          <div>
-              <div class = "name">Original cinnamon roll</div>
-              <div class = "price">$2.49</div>
-          </div>
-        </a>
-    
-        <a class = "content-link" href = "product detail page.html">
-          <img class="gallery-img" src="../assets/products/apple-cinnamon-roll.jpg" border = 3/>
-            <div>
-                <div class = "name">Apple cinnamon roll</div>
-                <div class = "price">$3.49</div>
-            </div>
-        </a>
-  
-        <a class = "content-link" href = "product detail page.html">
-          <img class="gallery-img" src="../assets/products/raisin-cinnamon-roll.jpg" border = 3/>
-            <div>
-                <div class = "name">Raisin cinnamon roll</div>
-                <div class = "price">$2.99</div>
-            </div>
-        </a>
+    <div class = "content-detail">
+      <img class="detail-img" src="../assets/products/original-cinnamon-roll.jpg" border = 3/>
 
-    </div>
+      <div class = "detail-right">
 
-    <div id = row class = "row-2">
-
-      <a class = "content-link" href = "product detail page.html">
-        <img class="gallery-img" src="../assets/products/walnut-cinnamon-roll.jpg" border = 2/>
-        <div>
-            <div class = "name">Walnut cinnamon roll</div>
-            <div class = "price">$3.49</div>
+        <div class = "description">
+          Customize our delicious, hand-made cinammon roll to your liking!
         </div>
-      </a>
 
-
-    
-      <a class = "content-link" href = "product detail page.html">
-          <img class="gallery-img" src="../assets/products/double-chocolate-cinnamon-roll.jpg" border = 3/>
-          <div>
-              <div class = "name">Double chocolate cinnamon roll</div>
-              <div class = "price">$3.99</div>
+        <div class = option-big-group>
+          <div class = "option-group">
+            <div class = "description">Glazing:</div>
+            <select id = "glazing-select" class = "option">
+                <option value = "0">Keep original</option>
+                <option value = "1">Sugar milk</option>
+                <option value = "2">Vanilla milk</option>
+                <option value = "3">Double chocolate</option>
+            </select>
           </div>
-      </a>          
-  
+      
+          <div class = "option-group">
+            <div class = "description">Pack size:</div>
+            <select id = "pack-select" class = "option">
+                <option value = "0">1</option>
+                <option value = "1">3</option>
+                <option value = "2">6</option>
+                <option value = "3">12</option>
+            </select>
+          </div>
 
-      <a class = "content-link" href = "product detail page.html">
-        <img class="gallery-img" src="../assets/products/strawberry-cinnamon-roll.jpg" border = 3/>
-        <div>
-            <div class = "name">Strawberry cinnamon roll</div>
-            <div class = "price">$3.99</div>
+          <div class = "addcart">
+            <div id = "addcart-price">$ 2.49</div>
+            <button>Add to Cart</button>
+          </div>
+
         </div>
-      </a>
-
+      </div>
     </div>
   </body>
 </html>
