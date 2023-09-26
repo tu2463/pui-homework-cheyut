@@ -1,6 +1,4 @@
-console.log("started");
 
-let finalPrice = document.querySelector('#addcart-price');
 
 let allGlazing = [
     {
@@ -60,21 +58,36 @@ function packChange() {
     priceChange(glazingPrice, packPrice);
   }
 
+let finalPrice = document.querySelector('#addcart-price');
 
 function priceChange(glazingPrice, packPrice) {
-    console.log('glazingPrice = ', glazingPrice, ' packPrice = ', packPrice);
     basePrice = 2.49;
     let calculatedPrice = ((basePrice + glazingPrice) * packPrice).toFixed(2);
     finalPrice.innerText = '$ ' + calculatedPrice.toString();
-    console.log('calPrice = ', calculatedPrice);
 }
 
 let glazingSelect = document.querySelector('#glazing-select');
 let packSelect = document.querySelector('#pack-select');
 
+
+for (let i = 0; i < allGlazing.length; i++) {
+    var option = document.createElement('option');
+    option.text = allGlazing[i].name;
+    option.value = i;
+    glazingSelect.add(option);
+}
+
+for (let i = 0; i < allPack.length; i++) {
+    var option = document.createElement('option');
+    option.text = allPack[i].size;
+    option.value = i;
+    packSelect.add(option);
+}
+
 // default values
 let glazingPrice = 0;
 let packPrice = 1;
+priceChange(glazingPrice, packPrice);
 
 glazingSelect.addEventListener('change', glazingChange);
 packSelect.addEventListener('change', packChange);
