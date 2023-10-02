@@ -38,7 +38,7 @@ const chosenRoll = params.get('roll');
 // ----- Getting corresponding value (image, heading, basePrice) ---------------
 
 const detailImage = document.querySelector('.detail-img');
-detailImage.src = '../assets/products/' + chosenRoll.toLowerCase() + '-cinnamon-roll.jpg';
+detailImage.src = '../assets/products/' + chosenRoll + '-cinnamon-roll.jpg';
 
 const headerElement = document.querySelector('#detail-intro');
 headerElement.innerText = chosenRoll + ' cinnamon roll';;
