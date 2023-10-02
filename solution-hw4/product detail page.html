@@ -5,12 +5,11 @@
     <title>Product Detail Page</title>
     <link rel="stylesheet" href="css/style.css">
     <script defer src="js/app.js"></script>
-    <!-- in the version submitted, I used app.js -->
   </head>
 
   <body>
     <header>
-      <a href = "product gallery.html">
+      <a href = "index.html">
         <img class="logo" src="../assets/logo/logo-01.svg"/>
       </a>
 
@@ -30,8 +29,7 @@
   
         <div class = "line"></div>
         
-        <div class = "intro">
-          Original cinnamon roll
+        <div id = detail-intro class = "intro">
         </div>
       </div>
     </header>
@@ -61,7 +59,7 @@
           <div class = "addcart">
             <div id = "addcart-price">
             </div>
-            <button>Add to Cart</button>
+            <button onclick = 'addCart()'>Add to Cart</button>
           </div>
 
         </div>

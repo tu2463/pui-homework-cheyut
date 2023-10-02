@@ -1,88 +1,80 @@
+console.log("started");
 
-
-const allGlazing = [
-    {
+let allGlazing = {
+    0: {
         name: "Keep original",
         price: 0,
     },
-    {
+    1: {
         name: "Sugar milk",
         price: 0,
     },
-    {
+    2: {
         name: "Vanilla milk",
         price: 0.5,
     },
-    {
+    3: {
         name: "Double chocolate",
         price: 1.5
     },
-];
+};
 
-const allPack = [
-    {
+let allPack = {
+    0: {
         size: 1,
         price: 1,
     },
-    {
+    1: {
         size: 3,
         price: 3,
     },
-    {
+    2: {
         size: 6,
         price: 5,
     },
-    {
+    3: {
         size: 12,
         price: 10,
     },
-];
+};
 
 function glazingChange() {
-    // Citation: this function and the packChange() function imitate the 'select-example' in lab 4
-  
-    let glazingIndex = parseInt(this.value);
-  
-    // Now retrieve the object at the index specified by the select's value
-    glazingPrice = allGlazing[glazingIndex].price;
-  
-    // Update the UI
+    glazingPrice = parseFloat(this.value);
     priceChange(glazingPrice, packPrice);
   }
 
 function packChange() {
-    let packIndex = parseInt(this.value);
-  
-    packPrice = allPack[packIndex].price;
-  
+    packPrice = parseInt(this.value);
     priceChange(glazingPrice, packPrice);
   }
 
 let finalPrice = document.querySelector('#addcart-price');
 
 function priceChange(glazingPrice, packPrice) {
+    console.log('glazingPrice = ', glazingPrice, ' packPrice = ', packPrice);
     basePrice = 2.49;
     let calculatedPrice = ((basePrice + glazingPrice) * packPrice).toFixed(2);
     finalPrice.innerText = '$ ' + calculatedPrice.toString();
+    console.log('calPrice = ', calculatedPrice);
 }
 
 let glazingSelect = document.querySelector('#glazing-select');
 let packSelect = document.querySelector('#pack-select');
 
-console.log('debug', allGlazing.length);
+const glazingArray = Object.entries(allGlazing);
+const packArray = Object.entries(allPack);
 
-
-for (let i = 0; i < allGlazing.length; i++) {
+for (element in glazingArray) {
     var option = document.createElement('option');
-    option.text = allGlazing[i].name;
-    option.value = i;
+    option.text = glazingArray[element][1].name;
+    option.value = glazingArray[element][1].price;
     glazingSelect.add(option);
 }
 
-for (let i = 0; i < allPack.length; i++) {
+for (element in packArray) {
     var option = document.createElement('option');
-    option.text = allPack[i].size;
-    option.value = i;
+    option.text = packArray[element][1].size;
+    option.value = packArray[element][1].price;;
     packSelect.add(option);
 }
 
