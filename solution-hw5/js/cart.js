@@ -1,4 +1,3 @@
-console.log("start...");
 let cart = [];
 
 class Roll {
@@ -61,7 +60,6 @@ function updateElement(thisRoll) {
     
     // copy our roll content over to the corresponding HTML elements
     const rollType = (thisRoll.type).toLowerCase();
-    // console.log("thisR.type: ", thisRoll.type, " rollType: ", rollType);
     cartImageElement.src = '../assets/products/' + rollType + '-cinnamon-roll.jpg'
     cartTitleElement.innerText = thisRoll.type + " Cinnamon Roll";
     cartGlazingElement.innerText = "Glazing: " + thisRoll.glazing;
@@ -72,7 +70,6 @@ function updateElement(thisRoll) {
 
 function calculateSinglePrice(thisRoll) {
     let basePrice = thisRoll.basePrice;
-    // console.log("thisR: ", thisRoll,".glazing: ", thisRoll.glazing, "cart[glazing]: ");
     let glazingPrice = cart_allGlazing[thisRoll.glazing].price;
     let packPrice = cart_allPack[thisRoll.size].price;
     let singlePrice = (basePrice + glazingPrice) * packPrice;
@@ -85,8 +82,6 @@ function calculateTotalPrice() {
         let thisRoll = cart[i];
         let singlePrice = parseFloat(calculateSinglePrice(thisRoll));
         totalPrice = totalPrice + singlePrice;
-        // console.log("calTotalPrice - thisR: ", thisRoll);
-        console.log("calTotalPrice: ", singlePrice, " totalP: ", totalPrice);
     }
     return totalPrice.toFixed(2);
 }
@@ -152,5 +147,3 @@ for (let i = 0; i < tempRolls.length; i++) {
     let thisRoll = tempRolls[i];
     addCart(thisRoll);
 }
-
-console.log("... end");
