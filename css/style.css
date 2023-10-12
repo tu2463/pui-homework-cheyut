@@ -1,0 +1,21 @@
+body {
+    font-family: Chalkduster;
+    font-size: 25px;
+    color: rgb(177, 175, 218);
+    background: rgb(35, 34, 42);
+    font-weight: 400;
+}
+
+a {
+    color: rgb(177, 175, 218);
+}
+
+ul {
+    width: 33%;
+    margin: 100px auto auto auto;
+}
+
+li {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
