@@ -98,7 +98,6 @@ function calculateTotalPrice() {
 function updateTotalPrice() {
     const cartTotalPriceElement = document.querySelector('.cart-total-price');
     let totalPrice = calculateTotalPrice();
-    // console.log("TP: ", totalPrice);
     cartTotalPriceElement.innerText = "$ " + totalPrice;
 }
 
@@ -117,7 +116,6 @@ function deleteRoll(thisRoll) {
 
 function saveToLocalStorage() {
     const cartArrayString = JSON.stringify(cart);
-    // console.log("saving ", cart, "as", cartArrayString);
     localStorage.setItem('storedCart', cartArrayString);
     console.log("cart in local storage: ", localStorage.getItem('storedCart'));
 }
@@ -156,7 +154,6 @@ function createRollObj (chosenRoll) {
 
     //get the key that can be used in cart_allGlazing
     cartRollGlazing = convert_allGlazing[rollGlazing]; 
-    // console.log("creating roll with rollGlazing", rollGlazing, "->", cartRollGlazing);
     let thisRoll = new Roll(rollType, cartRollGlazing, packSize, basePrice);
     addCart(thisRoll);
 }
@@ -178,33 +175,11 @@ function retrieveFromStorage () {
     }
 }
 
-// function initialize() {
-//     const orRoll = {type: 'Original', glazing: 'Sugar Milk', size: 1, basePrice: 2.49, element: null};
-//     const waRoll = {type: 'Walnut', glazing: 'Vanilla Milk', size: 12, basePrice: 3.49, element: null};
-//     const raRoll = {type: 'Raisin', glazing: 'Sugar Milk', size: 3, basePrice: 2.99, element: null};
-//     const apRoll = {type: 'Apple', glazing: 'Original', size: 3, basePrice: 3.49, element: null};
-
-//     const tempRolls = [apRoll, raRoll, waRoll, orRoll];
-
-//     console.log("initialized ", tempRolls);
-
-//     // add the rolls to cart
-//     for (let i = 0; i < tempRolls.length; i++) {
-//         const tempRoll = tempRolls[i];
-//         const thisRoll = new Roll(tempRoll.type, tempRoll.glazing, tempRoll.size, tempRoll.basePrice);
-//         // console.log("initializing ", tempRoll, " to ", thisRoll);
-//         addCart(thisRoll);
-//         makeClone(thisRoll);
-//     }
-// }
-
 const cart = [];
 
 function checkCurPage() {
-    // console.log("curPage: ", localStorage.getItem('curPage'));
     if (localStorage.getItem('curPage') == 'cart') {
         if (localStorage.getItem('storedCart') != null) { 
-            console.log("localStorage: ", localStorage.getItem('storedCart'));
             retrieveFromStorage();
             updateTotalPrice();
             for (let thisRoll of cart){
