@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <meta charset="UTF-8">
+  <head>
+    <title>Product Detail Page</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script defer src="js/detail.js"></script>
+    <script defer src="js/app.js"></script>
+  </head>
+
+  <body>
+    <header>
+      <a href = "index.html">
+        <img class="logo" src="../assets/logo/logo-01.svg"/>
+      </a>
+
+      <div class = "header-right">
+        <nav>
+          <div class = "selected">
+            <a href = "index.html">
+              PRODUCTS
+            </a>
+          </div>
+          <div class = "unselected">
+            <a href = "shopping cart.html">
+              CART
+            </a>
+          </div>
+        </nav>
+  
+        <div class = "line"></div>
+        
+        <div id = detail-intro class = "intro">
+        </div>
+      </div>
+    </header>
+
+    <div class = "content-detail">
+      <img class="detail-img" src="../assets/products/original-cinnamon-roll.jpg" border = 3/>
+
+      <div class = "detail-right">
+
+        <div class = "description">
+          Customize our delicious, hand-made cinammon roll to your liking!
+        </div>
+
+        <div class = option-big-group>
+          <div class = "option-group">
+            <div class = "description">Glazing:</div>
+            <select id = "glazing-select" class = "option">
+            </select>
+          </div>
+      
+          <div class = "option-group">
+            <div class = "description">Pack size:</div>
+            <select id = "pack-select" class = "option">
+            </select>
+          </div>
+
+          <div class = "addcart">
+            <div id = "addcart-price">
+            </div>
+            <button onclick = 'createRollObj(chosenRoll)'>Add to Cart</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
