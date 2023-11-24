@@ -1,0 +1,1 @@
+localStorage.setItem('05430FP_curPage', 'homepage');

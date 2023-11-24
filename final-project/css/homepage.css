@@ -1,0 +1,33 @@
+#left-top .help-button {
+    margin-top: 24px;
+    margin-left: 24px
+}
+
+#left-bottom {
+    display: flex;
+}
+
+#planet-button {
+    position: relative;
+    /* background: green; */
+    height: 155px;
+}
+
+#planet-button .text {
+    position: absolute;
+    top: 20%;
+    width: 100%;
+    text-align: center;
+}
+
+#planet-button.collection {
+    margin-left: 186px;
+    margin-top: 503px;
+    /* =581-78 */
+}
+
+#planet-button.history {
+    margin-left: 49px; /* = 390-186-156 */
+    margin-top: 454px;
+    /* = 532-78 */
+}

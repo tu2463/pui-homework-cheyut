@@ -1,0 +1,26 @@
+#left section {
+    margin-top: 301px;
+    margin-left: 90px;
+}
+
+.focus-text {
+    background: rgba(233, 213, 202, 0.5);
+    border-radius: 21px;
+}
+
+#left .text-group {
+    width: 394px;
+    height: 154px;
+    display: flex;
+}
+
+#left .focus-text {
+    width: 348px;
+    margin-left: auto;
+    height: 100%;
+}
+
+#left .time {
+    color: white;
+    font-size: 96px;
+}

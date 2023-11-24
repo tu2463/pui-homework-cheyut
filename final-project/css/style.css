@@ -1,0 +1,90 @@
+/* html {
+    width: 1280px;
+    height: 832px;
+} */
+
+body {
+    box-sizing: border-box;
+    font-family: Antic;
+    font-size: 24px;
+    color: #e9d5ca;
+    background: #2e4374;
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+#left {
+    width: 495px;
+    /* background: grey; */
+}
+
+#right {
+    background: blue;
+    width: calc(1280px - 495px);
+}
+
+#planet-group {
+    margin-top: 23px;
+    background: red;
+    width: 785px;
+    height: 785px;
+}
+
+#planet {
+    position: relative;
+    top: calc(107px - 23px); 
+    width: 620px;
+    height: 620px;
+    margin: auto;
+    background: white;
+}
+
+img{
+    margin: auto auto auto auto;
+}
+
+.planet-content {
+    position: absolute;
+    top: 20%;
+    height: 296px;
+    width: 438px;
+    text-align: center;
+    margin-left: 94px;
+    /* background: yellow; */
+}
+
+.planet-text {
+    height: 296px;
+    background: green;
+}
+
+#circle-button {
+    margin-top: 100px;
+}
+
+.text {
+    margin-top: 14.5px;
+    margin-bottom: 14.5px;
+}
+
+.inner {
+    margin-left: 25px;
+}
+
+.time-selection input {
+    border: 7px solid #e9d5ca;
+    border-radius: 21px;
+    background: rgba(233, 213, 202, 0.5);
+    width: 100%;
+    height: 64px;
+}
+
+textarea {
+    border: 7px solid #e9d5ca;
+    border-radius: 21px;
+    background: rgba(233, 213, 202, 0.5);
+    width: 100%;
+    height: 64px;
+}
+
