@@ -93,7 +93,7 @@ reloadBtn.addEventListener('click', function () {
          reloadBtn.style.display= "none";
       } 
    });
-   TweenMax.to(timerEl, 1, { opacity: 1 });
+   TweenMax.to(timerEl, 1, { opacity: 1 });num-
    initTimer("12:35");
 });
 

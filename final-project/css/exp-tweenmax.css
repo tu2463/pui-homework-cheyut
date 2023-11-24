@@ -1,0 +1,61 @@
+body {
+    font-family: 'Antic';
+    padding: 9em;
+}
+
+h1 {
+    font-size: 5em;
+    width: 25%;
+    color: red;
+    line-height: 1em;
+}
+
+button {
+    background: none;
+    border: 1px solid black;
+    font-family: 'Antic';
+    font-size: 1.7em;
+    padding: .5em 1em;
+    cursor: pointer; /* ?? */   
+}
+
+.panel {
+    position: absolute;
+    width: 55%;
+    bottom: 0;
+    right: 0;
+    background: #EAEAEA;
+    box-sizing: border-box;
+    padding: 15% 7%;
+
+    /* animation starts */
+    transform: scaleY(0);
+    transform-origin: bottom; /* scale from the bottom */ 
+}
+
+img {
+    width: 120px;
+    float: left;
+    margin-right: 50px;
+    opacity: 0%;
+    transform: translateY(-200px);
+}  
+
+p {
+    font-size: 1.9em;
+    opacity: 0%;
+    width: 80%;
+}
+.box {
+    border: 5px solid lightgray;
+    width: 65%;
+    height: 40%;
+    position: absolute;
+    left: -7%;
+    opacity: 0%;
+    top: 15%;
+    transform: scale(0)
+    /* z-index: -1;  */
+    /* The z-index property specifies the stack order of an element.
+    An element with greater stack order is always in front of an element with a lower stack order. */
+}

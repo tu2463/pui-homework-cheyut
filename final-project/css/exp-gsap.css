@@ -1,0 +1,7 @@
+body {
+    display: flex;
+}
+.pause {
+    width: 155px;
+    background: red;
+}
