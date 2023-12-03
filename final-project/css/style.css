@@ -36,6 +36,22 @@ textarea::placeholder {
     color:rgba(233, 213, 202, 0.8);
 }
 
+#rec-button {
+    box-sizing: border-box;
+    /* height: 60px; */
+    width: 142px;
+    padding: 7px 15px;
+    text-align: center;
+    background: rgba(233, 213, 202, 0.5);
+    border-radius: 15px;
+    border: none;
+    margin: 14.5px auto auto auto;
+}
+
+#rec-button:hover {
+    border: 7px solid #e9d5ca;
+}
+
 #left {
     width: 495px;
     /* background: grey; */
