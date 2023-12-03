@@ -24,9 +24,12 @@ function updateFocusInProgressInfo() {
   const curRecord = addNewRecord(curRecordData.startTime, curRecordData.duration, 
     curRecordData.note, curRecordData.isCompleted);
   console.log(curRecord);
-  const noteBodyElement = document.querySelector('#left .text-group .focus-text .text');
-  noteBodyElement.innerText = curRecord.note;
 
+  const noteBodyElement = document.querySelector('#left .text-group textarea');
+  noteBodyElement.value = curRecord.note;
+
+  const timeInput = localStorage.getItem('05430FP_timeInput');
+  initTimer(timeInput.toString() + ":00");
 }
 
 function createWebRecordElement(record) {
@@ -52,7 +55,7 @@ function createWebRecordElement(record) {
       rightRoteParentElement.prepend(record.element); // notice the use of "prepend"
     }
     // populate the notecard clone with the actual notecard content
-    updateWebRecordElement(record);
+    // updateWebRecordElement(record);
   }
 
 function addNewRecord(curTime, durationTextValue, noteTextValue, isCompleted) {
@@ -62,23 +65,31 @@ function addNewRecord(curTime, durationTextValue, noteTextValue, isCompleted) {
   }
 
 function submitNote() { // get the attributes that will go into a new Record obj
+    const timeInput = parseInt(document.querySelector('#textbox-time textarea.text').value);
+    if (!timeInput || timeInput < 0 || timeInput > 180){
+      console.log(timeInput, !timeInput, timeInput < 0, timeInput > 180);
+      alert("Please enter a valid value (a number between 10-180)");
+      return;
+    }
+    else if (0 <= timeInput && timeInput <= 10){
+      alert("Please enter a value greater than 10. We would love to recommend focus longer :)");
+      return;
+    }
+  
     const curDate = new Date();
     const curTime = curDate.getTime();
 
-    // const durationText = document.querySelector();
-    const durationTextValue = 10; // placeholder
-
     const noteText = document.querySelector('#textbox textarea.text');
     const noteTextValue = noteText.value;
-
     const isCompleted = false;
 
     // create new Record obj, add the new Record to set
-    const record = addNewRecord(curTime, durationTextValue, noteTextValue, isCompleted);
+    const record = addNewRecord(curTime, timeInput, noteTextValue, isCompleted);
     // createWebRecordElement(record); // create the record list showing in history page
     saveToLocalStorage();
+    saveTimeInput(timeInput);
+    window.location.replace("focus-in-progress.html");
   }
-
 
 const history = [];
 if (localStorage.getItem('05430FP_curPage') == 'homepage'){
@@ -88,7 +99,7 @@ if (localStorage.getItem('05430FP_curPage') == 'homepage'){
   });
 }
 else if (localStorage.getItem('05430FP_curPage') == 'focus-in-progress') {
-  localStorage.getItem('storedHistory'); //debug
+  localStorage.getItem('05430FP_storedHistory'); //debug
   updateFocusInProgressInfo();
 }
 
@@ -97,11 +108,15 @@ function saveToLocalStorage() {
   console.log(historyArray);
   
   const historyArrayString = JSON.stringify(historyArray);
-  localStorage.setItem('storedHistory', historyArrayString);
+  localStorage.setItem('05430FP_storedHistory', historyArrayString);
+}
+
+function saveTimeInput(timeInput){
+  localStorage.setItem('05430FP_timeInput', timeInput.toString());
 }
 
 function retrieveFromLocalStorage() {
-  const historyArrayString = localStorage.getItem('storedHistory');
+  const historyArrayString = localStorage.getItem('05430FP_storedHistory');
   const historyArray = JSON.parse(historyArrayString);
   console.log(historyArray);
   

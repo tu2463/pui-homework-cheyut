@@ -14,6 +14,28 @@ body {
     width: 100vw;
 }
 
+textarea {
+    box-sizing: border-box;
+    padding: 7px 15px;
+    border: none;
+    border-radius: 15px;
+    background: rgba(233, 213, 202, 0.5);
+    width: 100%;
+    height: 100%;
+    
+    font-family: Antic;
+    font-size: 24px;
+    color: #e9d5ca;
+}
+
+textarea:focus {
+    border: 7px solid #e9d5ca;
+}
+
+textarea::placeholder {
+    color:rgba(233, 213, 202, 0.8);
+}
+
 #left {
     width: 495px;
     /* background: grey; */
@@ -56,35 +78,19 @@ img{
 
 .planet-text {
     height: 296px;
-    background: green;
+    /* background: green; */
+}
+
+.planet-text #textbox{
+    height: 117px;
 }
 
 #circle-button {
     margin-top: 100px;
 }
 
+/* not in use yet */
 .text {
     margin-top: 14.5px;
     margin-bottom: 14.5px;
 }
-
-.inner {
-    margin-left: 25px;
-}
-
-.time-selection input {
-    border: 7px solid #e9d5ca;
-    border-radius: 21px;
-    background: rgba(233, 213, 202, 0.5);
-    width: 100%;
-    height: 64px;
-}
-
-textarea {
-    border: 7px solid #e9d5ca;
-    border-radius: 21px;
-    background: rgba(233, 213, 202, 0.5);
-    width: 100%;
-    height: 64px;
-}
-

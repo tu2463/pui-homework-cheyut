@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/homepage.css">
     <script defer src="js/homepage.js"></script>
+    <script defer src="js/focus-general.js"></script>
     <script defer src="js/app.js"></script>
   </head>
   <body>
@@ -39,24 +40,23 @@
                 <img src = "img/planet_prince.png">
                 <div class = "planet-content">
                     <div class = "planet-text">
-                        <div class = "text">
+                        <div class = "title">
                             Start focusing for
                         </div>
-                        <div class = "time-selection">
-                            <input class = "text" placeholder = "# of minutes to focus" 
-                            maxlength="3"></input>
+                        <div id = "textbox-time">
+                            <textarea class = "text" 
+                            placeholder = "# of minutes to focus (maximum 180 minutes)" maxlength="3"></textarea>
                         </div>
                         <div class = "title">
                             What do you want to focus on?
                         </div>
                         <div id = "textbox">
-                            <textarea class = "text" placeholder = "e.g. math homework" 
-                            rows="15" maxlength="1000"></textarea>
+                            <textarea class = "text" 
+                            placeholder = "e.g. math homework" maxlength="1000"></textarea>
                         </div>
                     </div> <!-- end of planet text -->
                     
-                    <a id = "circle-button" class = "initialize" href = "focus-in-progress.html">
-                    <!-- <a id = "circle-button" class = "initialize"> -->
+                    <a id = "circle-button" class = "initialize">
                         <img src = "img/start.png">
                     </a>
                 </div> <!-- end of planet content -->
