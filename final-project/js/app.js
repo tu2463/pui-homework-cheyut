@@ -1,9 +1,10 @@
 class Record {
-    constructor(startTime, duration, note, isCompleted) {
+    constructor(startTime, duration, note, isCompleted, productivity) {
         this.startTime = startTime;
         this.duration =  duration; // expected duration that the user set before starting a focus session; will change if the user doesn't finish the whole session.
         this.note = note;
         this.isCompleted = isCompleted;
+        this.productivity = productivity;
 
         this.element = null;
     }
@@ -44,44 +45,21 @@ function createWebRecordElement(record) {
     // updateWebRecordElement(record);
   }
 
-function submitNote() { // get the attributes that will go into a new Record obj
-    const timeInput = parseInt(document.querySelector('#textbox-time textarea.text').value);
-    if (!timeInput || timeInput < 0 || timeInput > 180){
-      console.log(timeInput, !timeInput, timeInput < 0, timeInput > 180);
-      alert("Please enter a valid value (a number between 10-180)");
-      return;
-    }
-    else if (0 <= timeInput && timeInput <= 10){
-      alert("Please enter a value greater than 10. We would love to recommend focus longer :)");
-      return;
-    }
-  
-    const curDate = new Date();
-    const curTime = curDate.getTime();
-
-    const noteText = document.querySelector('#textbox textarea.text');
-    const noteTextValue = noteText.value;
-    const isCompleted = false;
-
-    // create new Record obj, add the new Record to set
-    const record = addNewRecord(curTime, timeInput, noteTextValue, isCompleted);
-    // createWebRecordElement(record); // create the record list showing in history page
-    saveToLocalStorage();
-    saveTimeInput(timeInput);
-    window.location.replace("focus-in-progress.html");
-  }
-
-let curPage = window.location.pathname;
-if (curPage == '/index.html'){
+let curPage = window.location.pathname.split("/").pop();
+console.log(curPage);
+if (curPage == 'index.html'){
+  console.log("index");
   const btnInitialize = document.querySelector('#circle-button.initialize');
   btnInitialize.addEventListener('click', () => {
     submitNote();
   });
 }
-else if (curPage == '/focus-in-progress.html') {
+else if (curPage == 'focus-in-progress.html') {
   localStorage.getItem('05430FP_storedHistory'); //debug
   updateFocusInProgressInfo();
 }
-else if (curPage == '/end.html'){
+else if (curPage == 'end.html'){
   updateEndInfo();
+  const btnProd = document.querySelector('#rec-button.to-end-treasure');
+  btnProd.addEventListener('click', () => {submitProductivity()})
 }
