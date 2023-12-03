@@ -18,20 +18,6 @@ class Record {
 //   noteBodyElement.innerText = record.note;
 // }
 
-function updateFocusInProgressInfo() {
-  const historyArray = retrieveFromLocalStorage();
-  const curRecordData = historyArray.slice(-1)[0];
-  const curRecord = addNewRecord(curRecordData.startTime, curRecordData.duration, 
-    curRecordData.note, curRecordData.isCompleted);
-  console.log(curRecord);
-
-  const noteBodyElement = document.querySelector('#left .text-group textarea');
-  noteBodyElement.value = curRecord.note;
-
-  const timeInput = localStorage.getItem('05430FP_timeInput');
-  initTimer(timeInput.toString() + ":00");
-}
-
 function createWebRecordElement(record) {
     // make a clone of the notecard template
     const rightNoteTemplate = document.querySelector('#right-note-template');
@@ -56,12 +42,6 @@ function createWebRecordElement(record) {
     }
     // populate the notecard clone with the actual notecard content
     // updateWebRecordElement(record);
-  }
-
-function addNewRecord(curTime, durationTextValue, noteTextValue, isCompleted) {
-    const record = new Record(curTime, durationTextValue, noteTextValue, isCompleted);
-    history.push(record);
-    return record;
   }
 
 function submitNote() { // get the attributes that will go into a new Record obj
@@ -91,35 +71,17 @@ function submitNote() { // get the attributes that will go into a new Record obj
     window.location.replace("focus-in-progress.html");
   }
 
-const history = [];
-if (localStorage.getItem('05430FP_curPage') == 'homepage'){
+let curPage = window.location.pathname;
+if (curPage == '/index.html'){
   const btnInitialize = document.querySelector('#circle-button.initialize');
   btnInitialize.addEventListener('click', () => {
     submitNote();
   });
 }
-else if (localStorage.getItem('05430FP_curPage') == 'focus-in-progress') {
+else if (curPage == '/focus-in-progress.html') {
   localStorage.getItem('05430FP_storedHistory'); //debug
   updateFocusInProgressInfo();
 }
-
-function saveToLocalStorage() {
-  const historyArray = Array.from(history);
-  console.log(historyArray);
-  
-  const historyArrayString = JSON.stringify(historyArray);
-  localStorage.setItem('05430FP_storedHistory', historyArrayString);
-}
-
-function saveTimeInput(timeInput){
-  localStorage.setItem('05430FP_timeInput', timeInput.toString());
-}
-
-function retrieveFromLocalStorage() {
-  const historyArrayString = localStorage.getItem('05430FP_storedHistory');
-  const historyArray = JSON.parse(historyArrayString);
-  console.log(historyArray);
-  
-  // createWebRecordElement(curRecord);
-  return historyArray
+else if (curPage == '/end.html'){
+  updateEndInfo();
 }

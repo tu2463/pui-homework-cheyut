@@ -1,5 +1,4 @@
 
-
 function initTimer(timeString) {
     let time = {
         min: timeString.split(':')[0],
@@ -27,7 +26,10 @@ function initTimer(timeString) {
     }
 
     function countdownFinished() {
-        window.location.replace("index.html");
+        curRecord = history[history.length - 1];
+        curRecord.isCompleted = true;
+        saveToLocalStorage();
+        window.location.replace("end.html");
     }
 
     function updateTimer() {
