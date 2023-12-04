@@ -43,7 +43,3 @@ function initTimer(timeString) {
 
     updateTimer();
 }
-
-// const ta = document.querySelector('.text.inner');
-// console.log(ta);
-// ta.value = "pp";

@@ -11,11 +11,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenLite.min.js"></script>
     <script defer src="js/end.js"></script>
     <script defer src="js/storage.js"></script>
+    <script defer src="js/focus-general.js"></script>
     <script defer src="js/app.js"></script>
   </head>
   <body>
     <section id = "left">
-      <section>
+      <section class = "time-text-group">
         <div class = "text">You have focused </div>
         <div class = "timer">
           <!-- 02:59:59  -->
@@ -33,21 +34,17 @@
         <div id = "planet-group">
             <div id = planet class = "homepage">
                 <img src = "img/planet_prince.png">
-                <div class = "planet-content">
-                    <div class = "planet-text">
-                      <div class = "title">
-                        Congrats! You discovered special from this planet.
-                      </div>
-                      <div class = "treasure-group">
-                        <div class = "treasure">
-                            <img src = "img/treasure-button.png">
-                        </div>
-                        <div class = "notice">
-                            <img src = "img/notice.png">
-                        </div>
-                      </div>
-                    </div> <!-- end of planet text -->
-                    
+                <div class = "planet-content end">
+                  <div class = "title end-treasure">
+                    Congrats! You discovered special from this planet.
+                  </div>
+                  <div class = "treasure-group">
+                    <div class = "treasure">
+                        <img src = "img/treasure-button.png">
+                    </div>
+                    <div class = "notice">
+                        <img src = "img/notice.png">
+                    </div> 
                     <div id = "rec-button" class = "to-home">
                       Continue
                     </div>

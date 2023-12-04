@@ -45,6 +45,21 @@ function createWebRecordElement(record) {
     // updateWebRecordElement(record);
   }
 
+// btns
+function endTreasureToHome() {
+  submitTreasure();
+  submitSession();
+  // window.location.replace("index.html");
+  console.log("go to home");
+}
+
+function endTreasureToCollection() {
+  submitTreasure();
+  submitSession();
+  // window.location.replace("collection.html");
+  console.log("go to collection");
+}
+
 let curPage = window.location.pathname.split("/").pop();
 console.log(curPage);
 if (curPage == 'index.html'){
@@ -66,7 +81,10 @@ else if (curPage == 'end.html'){
 else if (curPage == 'end-treasure.html') {
   updateEndInfo();
   const btnSave = document.querySelector('#rec-button.to-home');
-  btnSave.addEventListener('click', () => (submitTreasure()));
+  btnSave.addEventListener('click', () => (
+    endTreasureToHome()));
+  const btnTreasure = document.querySelector('.treasure');
+  btnTreasure.addEventListener('click', () => (endTreasureToCollection()));
 }
 
 // Treasure
@@ -76,6 +94,7 @@ class Treasure {
     this.category = category;
     this.title = title;
     this.content = body;
+    this.read = false;
   }
 }
 
@@ -84,15 +103,4 @@ const treasures = {
   2: {category: "c_2", title: "t_2", body: "b_2"}
 };
 
-// const collections = {};
-
-// // for (let i = 0; i < treasures.size; i ++){
-//   // add only if i discovered it! otherwise just leave the treasure raw. no need to change it to obj.
-//   const t = treasures[i];
-//   const id = t;
-//   const category = t.category;
-//   const title = t.title;
-//   const body = t.body;
-//   const treasure = new Treasure(id, category, title, body);
-//   collections.add(treasure);
-// }
+const collections = new Set();

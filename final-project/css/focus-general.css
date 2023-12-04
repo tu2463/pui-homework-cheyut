@@ -38,8 +38,13 @@
    border-radius: 21px;
 }
 
-#productivity-rating {
-   color: red;
+.planet-content.end {
+   height: auto;
+   top: 28%;
+}
+
+#rec-button.to-home {
+   margin-top: 32px;
 }
 
 /* end-treasure */
@@ -47,9 +52,10 @@
    position: relative;
    margin-left: auto;
    margin-right: auto;
+   margin-top: 38px;
    width: 162px;
    height: 162px;
-   background: purple;
+   /* background: purple; */
 }
 
 .notice {
@@ -62,6 +68,6 @@
 }
 
 .treasure {
-   width: 133px;
-   height: 133px;
+   width: 162px;;
+   height: 162px;
 }

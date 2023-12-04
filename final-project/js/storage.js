@@ -25,6 +25,14 @@ function updateEndInfo() {
     minElement.innerText = curRecord.duration + " min";
 }
 
+function updateEndTreasureInfo() {
+  const id = localStorage.getItem('05430_curTreasure');
+  const t  = collections[id];
+  const title = t.title;
+  const body = t.body;
+  // const titleElement = 
+}
+
 function retrieveHistory(){
     const historyArray = retrieveFromLocalStorage();
     const curRecordData = historyArray.slice(-1)[0];
@@ -32,6 +40,17 @@ function retrieveHistory(){
       curRecordData.note, curRecordData.isCompleted, curRecordData.productivity);
     console.log(curRecord);
     return curRecord;
+}
+
+function submitNoteBody() { //incomplete yet!!!
+  const noteText = document.querySelector('#textbox textarea.text');
+  const noteTextValue = noteText.value;
+  const isCompleted = false;
+
+  // create new Record obj, add the new Record to set
+  const record = addNewRecord(curTime, timeInput, noteTextValue, isCompleted, -1);
+  // createWebRecordElement(record); // create the record list showing in history page
+  saveToLocalStorage();
 }
 
 function submitNote() { // get the attributes that will go into a new Record obj
@@ -49,14 +68,7 @@ function submitNote() { // get the attributes that will go into a new Record obj
   const curDate = new Date();
   const curTime = curDate.getTime();
 
-  const noteText = document.querySelector('#textbox textarea.text');
-  const noteTextValue = noteText.value;
-  const isCompleted = false;
-
-  // create new Record obj, add the new Record to set
-  const record = addNewRecord(curTime, timeInput, noteTextValue, isCompleted, -1);
-  // createWebRecordElement(record); // create the record list showing in history page
-  saveToLocalStorage();
+  submiteNoteBody();
   saveTimeInput(timeInput);
   window.location.replace("focus-in-progress.html");
 }
@@ -70,8 +82,24 @@ function submitProductivity() {
 }
 
 function submitTreasure() {
-  const 
+  const id = Math.floor(Math.random() * (Object.keys(treasures).length - 1) + 1); // min = 0*l+1 = 1; max = 1*l+1 = l+1
+  const t = treasures[id];
+  console.log(Object.keys(treasures).length, id, treasures, t, collections);
+  const category = t.category;
+  const title = t.title;
+  const body = t.body;
+  const treasure = new Treasure(id, category, title, body);
+  collections.add(treasure);
+  localStorage.setItem('05430FP_curTreasure', id);
+
+  const collectionsArray = Array.from(collections);
+  console.log(collections);
+  
+  const collectionsArrayString = JSON.stringify(collectionsArray);
+  localStorage.setItem('05430FP_storedCollections', collectionsArrayString);
+  window.location.replace("end-treasure.html?page=read");
 }
+
 
 function saveToLocalStorage() {
     const historyArray = Array.from(history);
@@ -83,7 +111,7 @@ function saveToLocalStorage() {
   
 function saveTimeInput(timeInput){
     localStorage.setItem('05430FP_timeInput', timeInput.toString());
-  }
+}
   
 function retrieveFromLocalStorage() {
     const historyArrayString = localStorage.getItem('05430FP_storedHistory');
