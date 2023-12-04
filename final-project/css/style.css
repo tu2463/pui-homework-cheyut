@@ -52,19 +52,21 @@ textarea::placeholder {
     border: 7px solid #e9d5ca;
 }
 
+/* general layout*/
+
 #left {
     width: 495px;
     /* background: grey; */
 }
 
 #right {
-    background: blue;
+    /* background: blue; */
     width: calc(1280px - 495px);
 }
 
 #planet-group {
     margin-top: 23px;
-    background: red;
+    /* background: red; */
     width: 785px;
     height: 785px;
 }
@@ -75,7 +77,7 @@ textarea::placeholder {
     width: 620px;
     height: 620px;
     margin: auto;
-    background: white;
+    /* background: white; */
 }
 
 img{
@@ -94,7 +96,7 @@ img{
 
 .planet-text {
     height: 296px;
-    /* background: green; */
+    background: green;
 }
 
 .planet-text #textbox{

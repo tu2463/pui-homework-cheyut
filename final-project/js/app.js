@@ -61,5 +61,38 @@ else if (curPage == 'focus-in-progress.html') {
 else if (curPage == 'end.html'){
   updateEndInfo();
   const btnProd = document.querySelector('#rec-button.to-end-treasure');
-  btnProd.addEventListener('click', () => {submitProductivity()})
+  btnProd.addEventListener('click', () => {submitProductivity()});
 }
+else if (curPage == 'end-treasure.html') {
+  updateEndInfo();
+  const btnSave = document.querySelector('#rec-button.to-home');
+  btnSave.addEventListener('click', () => (submitTreasure()));
+}
+
+// Treasure
+class Treasure {
+  constructor(id, category, title, body) {
+    this.id = id;
+    this.category = category;
+    this.title = title;
+    this.content = body;
+  }
+}
+
+const treasures = {
+  1: {category: "c_1", title: "t_1", body: "b_1"},
+  2: {category: "c_2", title: "t_2", body: "b_2"}
+};
+
+// const collections = {};
+
+// // for (let i = 0; i < treasures.size; i ++){
+//   // add only if i discovered it! otherwise just leave the treasure raw. no need to change it to obj.
+//   const t = treasures[i];
+//   const id = t;
+//   const category = t.category;
+//   const title = t.title;
+//   const body = t.body;
+//   const treasure = new Treasure(id, category, title, body);
+//   collections.add(treasure);
+// }

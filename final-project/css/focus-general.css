@@ -28,3 +28,40 @@
    font-size: 96px;
    color: white;
 }
+
+/* end */
+.placeholder-img {
+   height: 168px;
+   width: 298px;
+   background: pink;
+   margin: 0px auto 14.5px auto;
+   border-radius: 21px;
+}
+
+#productivity-rating {
+   color: red;
+}
+
+/* end-treasure */
+.treasure-group {
+   position: relative;
+   margin-left: auto;
+   margin-right: auto;
+   width: 162px;
+   height: 162px;
+   background: purple;
+}
+
+.notice {
+   position: absolute;
+   width: 68px;
+   height: 68px;
+   z-index: 1000;
+   top: -6%;
+   left: -2%;
+}
+
+.treasure {
+   width: 133px;
+   height: 133px;
+}

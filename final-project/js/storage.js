@@ -13,13 +13,14 @@ function updateFocusInProgressInfo() {
   
     const timeInput = localStorage.getItem('05430FP_timeInput');
     // initTimer(timeInput.toString() + ":00");
-    initTimer("00:05");
+    initTimer("00:03");
 }
 
 function updateEndInfo() {
     const curRecord = retrieveHistory();
     const noteBodyElement = document.querySelector('#left .text-group textarea');
     noteBodyElement.value = curRecord.note;
+    console.log(curRecord, noteBodyElement.value);
     const minElement = document.querySelector('#minutes');
     minElement.innerText = curRecord.duration + " min";
 }
@@ -60,13 +61,16 @@ function submitNote() { // get the attributes that will go into a new Record obj
   window.location.replace("focus-in-progress.html");
 }
 
-function submitProductivity(){
-  const productivity =  parseInt(document.querySelector('#productivity-ratnig textarea.text').value);
-  assert(1 <= productivity && productivity <= 5);
+function submitProductivity() {
+  const productivity =  parseInt(document.querySelector('#productivity-rating textarea.text').value);
   const curRecord = history[history.length-1];
   curRecord.productivity = productivity;
   saveToLocalStorage();
-  // window.location.replace("end-treasure.html");
+  window.location.replace("end-treasure.html");
+}
+
+function submitTreasure() {
+  const 
 }
 
 function saveToLocalStorage() {
