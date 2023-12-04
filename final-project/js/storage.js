@@ -1,11 +1,5 @@
 const history = [];
 
-function addNewRecord(curTime, timeInput, noteTextValue, isCompleted, productivity) {
-    const record = new Record(curTime, timeInput, noteTextValue, isCompleted, productivity);
-    history.push(record);
-    return record;
-  }
-
 function updateFocusInProgressInfo() {
     const curRecord = retrieveHistory();
     const noteBodyElement = document.querySelector('#left .text-group textarea');
@@ -42,19 +36,24 @@ function retrieveHistory(){
     return curRecord;
 }
 
-function submitNoteBody() { //incomplete yet!!!
-  const noteText = document.querySelector('#textbox textarea.text');
+function addNewRecord(curTime, timeInput, noteTextValue, isCompleted, productivity) {
+  const record = new Record(curTime, timeInput, noteTextValue, isCompleted, productivity);
+  history.push(record);
+  return record;
+}
+
+function submitNoteBody(startTime, duration, isCompleted, productivity) { //incomplete yet!!!
+  const noteText = document.querySelector('textarea.text.note-body');
   const noteTextValue = noteText.value;
-  const isCompleted = false;
 
   // create new Record obj, add the new Record to set
-  const record = addNewRecord(curTime, timeInput, noteTextValue, isCompleted, -1);
+  const record = addNewRecord(startTime, duration, noteTextValue, isCompleted, productivity);
   // createWebRecordElement(record); // create the record list showing in history page
   saveToLocalStorage();
 }
 
 function submitNote() { // get the attributes that will go into a new Record obj
-  const timeInput = Math.floor(parseInt(document.querySelector('#textbox-time textarea.text').value));
+  const timeInput = Math.floor(parseInt(document.querySelector('textarea.text.time-input').value));
   if (!timeInput || timeInput < 0 || timeInput > 180){
     console.log(timeInput, !timeInput, timeInput < 0, timeInput > 180);
     alert("Please enter a valid value (a number between 10-180)");
@@ -68,7 +67,9 @@ function submitNote() { // get the attributes that will go into a new Record obj
   const curDate = new Date();
   const curTime = curDate.getTime();
 
-  submiteNoteBody();
+  const isCompleted = false;
+  const productivity = -1
+  submitNoteBody(curTime, timeInput, isCompleted, productivity);
   saveTimeInput(timeInput);
   window.location.replace("focus-in-progress.html");
 }
@@ -89,7 +90,7 @@ function submitTreasure() {
   const title = t.title;
   const body = t.body;
   const treasure = new Treasure(id, category, title, body);
-  collections.add(treasure);
+  collections.push(treasure);
   localStorage.setItem('05430FP_curTreasure', id);
 
   const collectionsArray = Array.from(collections);

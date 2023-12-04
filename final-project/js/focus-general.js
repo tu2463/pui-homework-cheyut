@@ -28,6 +28,7 @@ function initTimer(timeString) {
     function countdownFinished() {
         curRecord = history[history.length - 1];
         curRecord.isCompleted = true;
+        submitNoteBody(curRecord.startTime, curRecord.duration, curRecord.isCompleted, curRecord.productivity);
         saveToLocalStorage();
         window.location.replace("end.html");
     }

@@ -47,6 +47,8 @@ function createWebRecordElement(record) {
 
 // btns
 function endTreasureToHome() {
+  const curRecord = retrieveHistory();
+  submitNoteBody(curRecord.startTime, curRecord.duration, curRecord.isCompleted, curRecord.productivity);
   submitTreasure();
   submitSession();
   // window.location.replace("index.html");
@@ -54,10 +56,18 @@ function endTreasureToHome() {
 }
 
 function endTreasureToCollection() {
+  const curRecord = retrieveHistory();
+  submitNoteBody(curRecord.startTime, curRecord.duration, curRecord.isCompleted, curRecord.productivity);
   submitTreasure();
   submitSession();
   // window.location.replace("collection.html");
   console.log("go to collection");
+}
+
+function endToEndTreasure() {
+  const curRecord = retrieveHistory();
+  submitNoteBody(curRecord.startTime, curRecord.duration, curRecord.isCompleted, curRecord.productivity);
+  submitProductivity();
 }
 
 let curPage = window.location.pathname.split("/").pop();
@@ -76,13 +86,12 @@ else if (curPage == 'focus-in-progress.html') {
 else if (curPage == 'end.html'){
   updateEndInfo();
   const btnProd = document.querySelector('#rec-button.to-end-treasure');
-  btnProd.addEventListener('click', () => {submitProductivity()});
+  btnProd.addEventListener('click', () => {endToEndTreasure()});
 }
 else if (curPage == 'end-treasure.html') {
   updateEndInfo();
   const btnSave = document.querySelector('#rec-button.to-home');
-  btnSave.addEventListener('click', () => (
-    endTreasureToHome()));
+  btnSave.addEventListener('click', () => (endTreasureToHome()));
   const btnTreasure = document.querySelector('.treasure');
   btnTreasure.addEventListener('click', () => (endTreasureToCollection()));
 }
@@ -103,4 +112,4 @@ const treasures = {
   2: {category: "c_2", title: "t_2", body: "b_2"}
 };
 
-const collections = new Set();
+const collections = [];

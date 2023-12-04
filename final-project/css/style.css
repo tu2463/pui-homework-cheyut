@@ -99,7 +99,7 @@ img{
     background: green;
 }
 
-.planet-text #textbox{
+.planet-text .textbox textarea.text.note-body{
     height: 117px;
 }
 
