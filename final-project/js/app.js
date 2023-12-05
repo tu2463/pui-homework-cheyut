@@ -58,8 +58,7 @@ function endTreasureToCollection() {
   const curRecord = retrieveHistory();
   submitNoteBody(curRecord.startTime, curRecord.duration, curRecord.isCompleted, curRecord.productivity);
   submitTreasure();
-  // window.location.replace("collection.html");
-  console.log("go to collection");
+  window.location.replace("collection.html");
 }
 
 function endToEndTreasure() {
@@ -93,21 +92,6 @@ else if (curPage == 'end-treasure.html') {
   const btnTreasure = document.querySelector('.treasure');
   btnTreasure.addEventListener('click', () => (endTreasureToCollection()));
 }
-
-// Treasure
-class Treasure {
-  constructor(id, category, title, body) {
-    this.id = id;
-    this.category = category;
-    this.title = title;
-    this.content = body;
-    this.read = false;
-  }
+else if (curPage == 'collection.html'){
+  updateCollectionInfo();
 }
-
-const treasures = {
-  1: {category: "c_1", title: "t_1", body: "b_1"},
-  2: {category: "c_2", title: "t_2", body: "b_2"}
-};
-
-const collections = [];

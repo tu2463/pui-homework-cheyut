@@ -19,14 +19,6 @@ function updateEndInfo() {
     minElement.innerText = curRecord.duration + " min";
 }
 
-function updateEndTreasureInfo() {
-  const id = localStorage.getItem('05430_curTreasure');
-  const t  = collections[id];
-  const title = t.title;
-  const body = t.body;
-  // const titleElement = 
-}
-
 function retrieveHistory(){
     const historyArray = retrieveFromLocalStorage();
     const curRecordData = historyArray.slice(-1)[0];
@@ -81,25 +73,6 @@ function submitProductivity() {
   curRecord.productivity = productivity;
   saveToLocalStorage();
   window.location.replace("end-treasure.html");
-}
-
-function submitTreasure() {
-  const id = Math.floor(Math.random() * (Object.keys(treasures).length - 1) + 1); // min = 0*l+1 = 1; max = 1*l+1 = l+1
-  const t = treasures[id];
-  console.log(Object.keys(treasures).length, id, treasures, t, collections);
-  const category = t.category;
-  const title = t.title;
-  const body = t.body;
-  const treasure = new Treasure(id, category, title, body);
-  collections.push(treasure);
-  localStorage.setItem('05430FP_curTreasure', id);
-
-  const collectionsArray = Array.from(collections);
-  console.log(collections);
-  
-  const collectionsArrayString = JSON.stringify(collectionsArray);
-  localStorage.setItem('05430FP_storedCollections', collectionsArrayString);
-  window.location.replace("end-treasure.html?page=read");
 }
 
 
