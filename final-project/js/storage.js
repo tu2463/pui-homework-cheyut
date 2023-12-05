@@ -75,8 +75,9 @@ function submitNote() { // get the attributes that will go into a new Record obj
 }
 
 function submitProductivity() {
-  const productivity =  parseInt(document.querySelector('#productivity-rating textarea.text').value);
-  const curRecord = history[history.length-1];
+  console.log(document.querySelector('.text'), document.querySelector('.productivity-rating'), document.querySelector('.productivity-rating textarea.text.productivity').value);
+  const productivity = parseInt((document.querySelector('.productivity-rating textarea.text.productivity')).value);
+  const curRecord = history[history.length - 1];
   curRecord.productivity = productivity;
   saveToLocalStorage();
   window.location.replace("end-treasure.html");

@@ -1,0 +1,27 @@
+.collection-catalog {
+    margin: 90px auto auto 51px;
+}
+
+header {
+    font-size: 24px;
+    font-style: italic;
+}
+
+.treasure-row {
+    display: flex;
+}
+
+.treasure {
+    box-sizing: border-box;
+    padding: 7px 15px;
+    border: none;
+    border-radius: 15px;
+    background: rgba(233, 213, 202, 0.5);
+    width: 125px;
+    height: 125px;
+}
+
+.treasure:active {
+    border: 7px solid #e9d5ca;
+}
+

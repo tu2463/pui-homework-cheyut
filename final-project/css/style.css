@@ -52,6 +52,12 @@ textarea::placeholder {
     border: 7px solid #e9d5ca;
 }
 
+#planet-button {
+    position: relative;
+    /* background: green; */
+    height: 155px;
+}
+
 /* general layout*/
 
 #left {

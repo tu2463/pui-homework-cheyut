@@ -50,7 +50,6 @@ function endTreasureToHome() {
   const curRecord = retrieveHistory();
   submitNoteBody(curRecord.startTime, curRecord.duration, curRecord.isCompleted, curRecord.productivity);
   submitTreasure();
-  submitSession();
   // window.location.replace("index.html");
   console.log("go to home");
 }
@@ -59,7 +58,6 @@ function endTreasureToCollection() {
   const curRecord = retrieveHistory();
   submitNoteBody(curRecord.startTime, curRecord.duration, curRecord.isCompleted, curRecord.productivity);
   submitTreasure();
-  submitSession();
   // window.location.replace("collection.html");
   console.log("go to collection");
 }
