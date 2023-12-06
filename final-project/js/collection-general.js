@@ -4,7 +4,7 @@ class Treasure {
       this.id = id;
       this.category = category;
       this.title = title;
-      this.content = body;
+      this.body = body;
       this.read = read;
       this.date = date;
 
@@ -13,8 +13,8 @@ class Treasure {
   }
   
 const treasures = {
-    1: {category: "c_1", title: "t_1", body: "b_1"},
-    2: {category: "c_2", title: "t_2", body: "b_2"}
+    1: {category: "c_1", title: "t_111111111", body: "b_1"},
+    2: {category: "c_2", title: "t_222222222", body: "b_2"}
   };
   
 const collections = [];
@@ -28,7 +28,10 @@ function submitTreasure() {
     const title = t.title;
     const body = t.body;
   
-    const date = new Date()
+    const date = new Date().toDateString(); // cur date, not the date of the session, 
+                                            // cuz you might start the session in day1 and end it in day2. 
+                                            // the treasure is discovered on day2.
+    
     const treasure = new Treasure(id, category, title, body, false, date);
     collections.push(treasure);
     localStorage.setItem('05430FP_curTreasure', id);
@@ -61,14 +64,21 @@ function updateCollectionInfo() {
 function makeTreasureClone(thisTreasure){
     const template = document.querySelector('.treasure-template');
     const clone = template.content.cloneNode(true);
-    thisTreasure.element = clone;
+    thisTreasure.element = clone.querySelector('.treasure');
+
 
     // add to the html structure
     const collectionsElement = document.querySelector('.collections');
-    collectionsElement.prepend(thisTreasure.elmeent);
+    collectionsElement.prepend(thisTreasure.element);
 
     // update the web elem content
-    const titleElement = thisTreasure.clone.querySelector('.title');
-    const bodyElement = thisTreasure.clone.querySelector('.body');
-    const dateElement = thisTreasure.clone.querySelector('.date');
+    const treasureElement = thisTreasure.element.querySelector('.treasure-title');
+    const titleElement = document.querySelector('.title');
+    const bodyElement = document.querySelector('.body');
+    const dateElement = document.querySelector('.date');
+
+    titleElement.innerText = thisTreasure.title;
+    bodyElement.innerText = thisTreasure.body;
+    dateElement.innerText = "Discovered on " + thisTreasure.date;
+    treasureElement.innerText = thisTreasure.title;
   }

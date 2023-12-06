@@ -6,8 +6,8 @@ function updateFocusInProgressInfo() {
     noteBodyElement.value = curRecord.note;
   
     const timeInput = localStorage.getItem('05430FP_timeInput');
-    initTimer(timeInput.toString() + ":00");
-    // initTimer("00:03");
+    // initTimer(timeInput.toString() + ":00");
+    initTimer("00:03");
 }
 
 function updateEndInfo() {
@@ -56,12 +56,11 @@ function submitNote() { // get the attributes that will go into a new Record obj
     return;
   }
 
-  const curDate = new Date();
-  const curTime = curDate.getTime();
+  const curDate = new Date().toDateString();
 
   const isCompleted = false;
   const productivity = -1
-  submitNoteBody(curTime, timeInput, isCompleted, productivity);
+  submitNoteBody(curDate, timeInput, isCompleted, productivity);
   saveTimeInput(timeInput);
   window.location.replace("focus-in-progress.html");
 }

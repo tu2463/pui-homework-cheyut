@@ -26,6 +26,17 @@ header {
     border: 7px solid #e9d5ca;
 }
 
+.collections {
+    margin-top: 54px
+}
+
+.treasure-title {
+    margin-top: 28px;
+    width: 100%;
+    overflow-wrap: break-word;
+    font-style: italic;
+}
+
 .planet-content.treasure-content {
     top: 10%;
 }
