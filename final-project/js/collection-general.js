@@ -7,6 +7,8 @@ class Treasure {
       this.content = body;
       this.read = read;
       this.date = date;
+
+      this.element = null;
     }
   }
   
@@ -36,7 +38,6 @@ function submitTreasure() {
     
     const collectionsArrayString = JSON.stringify(collectionsArray);
     localStorage.setItem('05430FP_storedCollections', collectionsArrayString);
-    window.location.replace("end-treasure.html?page=read");
   }
 
 // collection.html
@@ -47,7 +48,8 @@ function updateCollectionInfo() {
     console.log(collectionsArray); 
   
     // re-add treasures to collections
-    for (const treasure of collectionsArray) {
+    for (let i = 0; i < collectionsArray.length; i++){
+      const treasure = collectionsArray[0];
       const thisTreasure = new Treasure(treasure.id, treasure.category, 
         treasure.title, treasure.body, treasure.read, treasure.date);
       collections.push(thisTreasure);
@@ -55,7 +57,18 @@ function updateCollectionInfo() {
     }
     console.log(collections);
   }
-  
+
 function makeTreasureClone(thisTreasure){
-    console.log("cloning...");
+    const template = document.querySelector('.treasure-template');
+    const clone = template.content.cloneNode(true);
+    thisTreasure.element = clone;
+
+    // add to the html structure
+    const collectionsElement = document.querySelector('.collections');
+    collectionsElement.prepend(thisTreasure.elmeent);
+
+    // update the web elem content
+    const titleElement = thisTreasure.clone.querySelector('.title');
+    const bodyElement = thisTreasure.clone.querySelector('.body');
+    const dateElement = thisTreasure.clone.querySelector('.date');
   }

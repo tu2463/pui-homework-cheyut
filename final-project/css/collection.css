@@ -7,8 +7,9 @@ header {
     font-style: italic;
 }
 
-.treasure-row {
+.collections {
     display: flex;
+    flex-wrap: wrap;
 }
 
 .treasure {
@@ -47,7 +48,7 @@ header {
     text-align: justify;
 }
 
-.collected-time {
+.date {
     margin-top: 17px;
     font-size: 18px;
     color: rgba(233, 213, 202, 0.5);

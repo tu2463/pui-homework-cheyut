@@ -102,7 +102,7 @@ img{
 
 .planet-text {
     height: 296px;
-    background: green;
+    /* background: green; */
 }
 
 .planet-text .textbox textarea.text.note-body{

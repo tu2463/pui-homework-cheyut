@@ -6,8 +6,8 @@ function updateFocusInProgressInfo() {
     noteBodyElement.value = curRecord.note;
   
     const timeInput = localStorage.getItem('05430FP_timeInput');
-    // initTimer(timeInput.toString() + ":00");
-    initTimer("00:03");
+    initTimer(timeInput.toString() + ":00");
+    // initTimer("00:03");
 }
 
 function updateEndInfo() {
