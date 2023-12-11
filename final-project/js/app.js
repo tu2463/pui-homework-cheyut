@@ -46,6 +46,26 @@ function createWebRecordElement(record) {
   }
 
 // btns
+function homeToCollection() {
+  window.location.replace("collection.html");
+}
+
+function homeToHistory() {
+  // window.location.replace("history.html");
+  console.log('to the history!');
+}
+
+function progressToPause() {
+  const curRecord = retrieveHistory();
+  submitNoteBody(curRecord.startTime, curRecord.duration, curRecord.isCompleted, curRecord.productivity);
+  submitTime(secsLeft);
+  window.location.replace("focus-pause.html");
+}
+
+function pauseToProgress() {
+  console.log("pa to pr");
+}
+
 function endTreasureToHome() {
   const curRecord = retrieveHistory();
   submitNoteBody(curRecord.startTime, curRecord.duration, curRecord.isCompleted, curRecord.productivity);
@@ -67,10 +87,18 @@ function endToEndTreasure() {
   submitProductivity();
 }
 
+function collectionToHome() {
+  window.location.replace("index.html");
+}
+
+// page load
 let curPage = window.location.pathname.split("/").pop();
 console.log(curPage);
 if (curPage == 'index.html'){
-  console.log("index");
+  const btnCollection = document.querySelector('#planet-button.collection');
+  btnCollection.addEventListener('click', () => homeToCollection())
+  const btnHistory = document.querySelector('#planet-button.history');
+  btnHistory.addEventListener('click', () => homeToHistory())
   const btnInitialize = document.querySelector('#circle-button.initialize');
   btnInitialize.addEventListener('click', () => {
     submitNote();
@@ -79,19 +107,39 @@ if (curPage == 'index.html'){
 else if (curPage == 'focus-in-progress.html') {
   localStorage.getItem('05430FP_storedHistory'); //debug
   updateFocusInProgressInfo();
+  const btnPause = document.querySelector('#circle-button.pause');
+  btnPause.addEventListener('click', () => {progressToPause()});
+}
+else if (curPage == 'focus-pause.html') {
+  updateFocusPauseinfo();
+  const btnResume = document.querySelector('.rec-button.resume');
+  btnResume.addEventListener('click', () => {pauseToProgress()});
 }
 else if (curPage == 'end.html'){
   updateEndInfo();
-  const btnProd = document.querySelector('#rec-button.to-end-treasure');
+  const btnProd = document.querySelector('.rec-button.to-end-treasure');
   btnProd.addEventListener('click', () => {endToEndTreasure()});
 }
 else if (curPage == 'end-treasure.html') {
   updateEndInfo();
-  const btnSave = document.querySelector('#rec-button.to-home');
+  const btnSave = document.querySelector('.rec-button.to-home');
   btnSave.addEventListener('click', () => (endTreasureToHome()));
   const btnTreasure = document.querySelector('.treasure');
   btnTreasure.addEventListener('click', () => (endTreasureToCollection()));
 }
 else if (curPage == 'collection.html'){
   updateCollectionInfo();
+  const btnBack = document.querySelector('#planet-button.back');
+  btnBack.addEventListener('click', () => (collectionToHome()));
+}
+
+// animation
+function enlarge(selector) {
+  // console.log("e");
+  gsap.to(selector, {duration: 0.5, scale: 1.1});
+}
+
+function shrink(selector) {
+  // console.log("s");
+  gsap.to(selector, {duration: 0.5, scale: 1});
 }

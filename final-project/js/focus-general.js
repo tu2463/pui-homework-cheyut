@@ -1,4 +1,6 @@
 
+let secsLeft;
+
 function initTimer(timeString) {
     let time = {
         min: timeString.split(':')[0],
@@ -7,40 +9,61 @@ function initTimer(timeString) {
 
     let minNum = parseInt(time.min);
     let secNum =  parseInt(time.sec);
-    let secsLeft = minNum * 60 + secNum;
+    secsLeft = minNum * 60 + secNum;
 
-    function updateTimerDisplay() {
-        const minElement = document.querySelector('#minutes');
-        const secElement = document.querySelector('#seconds');
+    updateTimer(minNum, secNum);
+}
 
-        let minString;
-        let secString;
+function countdownFinished() {
+    curRecord = history[history.length - 1];
+    curRecord.isCompleted = true;
+    submitNoteBody(curRecord.startTime, curRecord.duration, curRecord.isCompleted, curRecord.productivity);
+    saveToLocalStorage();
+    window.location.replace("end.html");
+}
 
-        if (minNum < 10) { minString = "0" + minNum;}
-        else { minString = minNum;}
-        if (secNum < 10) { secString = "0" + secNum;}
-        else { secString = secNum;}
+function updateTimerDisplay(minNum, secNum) {
+    const minElement = document.querySelector('#minutes');
+    const secElement = document.querySelector('#seconds');
 
-        minElement.innerText = minString;
-        secElement.innerText = secString;
-    }
+    let minString;
+    let secString;
 
-    function countdownFinished() {
-        curRecord = history[history.length - 1];
-        curRecord.isCompleted = true;
-        submitNoteBody(curRecord.startTime, curRecord.duration, curRecord.isCompleted, curRecord.productivity);
-        saveToLocalStorage();
-        window.location.replace("end.html");
-    }
+    if (minNum < 10) { minString = "0" + minNum;}
+    else { minString = minNum;}
+    if (secNum < 10) { secString = "0" + secNum;}
+    else { secString = secNum;}
 
-    function updateTimer() {
-        secsLeft -= 1;
-        minNum = Math.floor(secsLeft / 60);
-        secNum = secsLeft % 60;
-        updateTimerDisplay();
-        if (secsLeft == 0) { countdownFinished();}
-        else { setTimeout(updateTimer, 1000);} // bug: seems to run faster than /1sec. go to oh.
-    }
+    minElement.innerText = minString;
+    secElement.innerText = secString;
+} 
 
-    updateTimer();
+function updateTimer(minNum, secNum) {
+    secsLeft -= 1;
+    minNum = Math.floor(secsLeft / 60);
+    secNum = secsLeft % 60;
+    updateTimerDisplay(minNum, secNum);
+    if (secsLeft == 0) { countdownFinished();}
+    else { setTimeout(updateTimer, 1000);} //?? bug: seems to run faster than /1sec. go to oh.
+}
+
+function updateFocusInProgressInfo() {
+    const curRecord = retrieveHistory();
+    const noteBodyElement = document.querySelector('#left .text-group textarea');
+    noteBodyElement.value = curRecord.note;
+  
+    const timeInput = localStorage.getItem('05430FP_timeInput');
+    initTimer(timeInput.toString() + ":00");
+    // initTimer("00:03");
+}
+
+function updateFocusPauseinfo() {
+    const curRecord = retrieveHistory();
+    const noteBodyElement = document.querySelector('#left .text-group textarea');
+    noteBodyElement.value = curRecord.note;
+  
+    secsLeft = localStorage.getItem('05430FP_secsLeft');
+    let minNum = Math.floor(secsLeft / 60);
+    let secNum = secsLeft % 60;
+    updateTimerDisplay(minNum, secNum);
 }

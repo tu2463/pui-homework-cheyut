@@ -14,16 +14,18 @@ header {
 
 .treasure {
     box-sizing: border-box;
-    padding: 7px 15px;
+    padding: 14px 22px;
     border: none;
     border-radius: 15px;
     background: rgba(233, 213, 202, 0.5);
     width: 125px;
     height: 125px;
+    margin-right: 29px;
 }
 
 .treasure:active {
     border: 7px solid #e9d5ca;
+    padding: 7px 15px;
 }
 
 .collections {
@@ -31,7 +33,7 @@ header {
 }
 
 .treasure-title {
-    margin-top: 28px;
+    margin-top: 23px;
     width: 100%;
     overflow-wrap: break-word;
     font-style: italic;

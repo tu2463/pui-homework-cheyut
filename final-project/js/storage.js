@@ -1,15 +1,5 @@
 const history = [];
 
-function updateFocusInProgressInfo() {
-    const curRecord = retrieveHistory();
-    const noteBodyElement = document.querySelector('#left .text-group textarea');
-    noteBodyElement.value = curRecord.note;
-  
-    const timeInput = localStorage.getItem('05430FP_timeInput');
-    // initTimer(timeInput.toString() + ":00");
-    initTimer("00:03");
-}
-
 function updateEndInfo() {
     const curRecord = retrieveHistory();
     const noteBodyElement = document.querySelector('#left .text-group textarea');
@@ -45,14 +35,17 @@ function submitNoteBody(startTime, duration, isCompleted, productivity) { //inco
 }
 
 function submitNote() { // get the attributes that will go into a new Record obj
-  const timeInput = Math.floor(parseInt(document.querySelector('textarea.text.time-input').value));
-  if (!timeInput || timeInput < 0 || timeInput > 180){
+  let timeInput = Math.floor(parseInt(document.querySelector('textarea.text.time-input').value));
+  if (!timeInput) {
+    timeInput = 25; // default
+  }
+  else if (timeInput < 0 || timeInput > 180){
     console.log(timeInput, !timeInput, timeInput < 0, timeInput > 180);
     alert("Please enter a valid value (a number between 10-180)");
     return;
   }
-  else if (0 <= timeInput && timeInput <= 10){
-    alert("Please enter a value greater than 10. We would love to recommend focus longer :)");
+  else if (0 <= timeInput && timeInput < 10){
+    alert("Please focus for at least 10 minutes :)");
     return;
   }
 
@@ -65,9 +58,15 @@ function submitNote() { // get the attributes that will go into a new Record obj
   window.location.replace("focus-in-progress.html");
 }
 
+function submitTime(secsLeft){
+  localStorage.setItem('05430FP_secsLeft', secsLeft);
+}
+
 function submitProductivity() {
-  console.log(document.querySelector('.text'), document.querySelector('.productivity-rating'), document.querySelector('.productivity-rating textarea.text.productivity').value);
   const productivity = parseInt((document.querySelector('.productivity-rating textarea.text.productivity')).value);
+  if (productivity < 0 || productivity > 5) {
+    alert("Please enter a valid value (a number between 1-5)");
+  }
   const curRecord = history[history.length - 1];
   curRecord.productivity = productivity;
   saveToLocalStorage();
