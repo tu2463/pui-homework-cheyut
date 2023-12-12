@@ -1,10 +1,10 @@
 const history = [];
 
 function updateEndInfo() {
-    const curRecord = retrieveHistory();
+    retrieveFromLocalStorage();
+    const curRecord = getLastRecordFromHistory();
     const noteBodyElement = document.querySelector('#left .text-group textarea');
     noteBodyElement.value = curRecord.note;
-    console.log(curRecord, noteBodyElement.value);
     const minElement = document.querySelector('#minutes');
     minElement.innerText = curRecord.duration + " min";
 }
@@ -18,21 +18,32 @@ function retrieveHistory(){
     return curRecord;
 }
 
-function addNewRecord(curTime, timeInput, noteTextValue, isCompleted, productivity) {
-  const record = new Record(curTime, timeInput, noteTextValue, isCompleted, productivity);
-  history.push(record);
-  return record;
+function getLastRecordFromHistory() {
+  return history[history.length - 1];
 }
 
-function submitNoteBody(startTime, duration, isCompleted, productivity) { //incomplete yet!!!
+function updateRecordNote(record) {
   const noteText = document.querySelector('textarea.text.note-body');
   const noteTextValue = noteText.value;
-
-  // create new Record obj, add the new Record to set
-  const record = addNewRecord(startTime, duration, noteTextValue, isCompleted, productivity);
-  // createWebRecordElement(record); // create the record list showing in history page
+  record.note = noteTextValue;
   saveToLocalStorage();
 }
+
+// function addNewRecord(curTime, timeInput, noteTextValue, isCompleted, productivity) {
+//   const record = new Record(curTime, timeInput, noteTextValue, isCompleted, productivity);
+//   history.push(record);
+//   return record;
+// }
+
+// function submitNoteBody(startTime, duration, isCompleted, productivity) { //incomplete yet!!!
+//   const noteText = document.querySelector('textarea.text.note-body');
+//   const noteTextValue = noteText.value;
+
+//   // create new Record obj, add the new Record to set
+//   const record = addNewRecord(startTime, duration, noteTextValue, isCompleted, productivity);
+//   // createWebRecordElement(record); // create the record list showing in history page
+//   saveToLocalStorage();
+// }
 
 function submitNote() { // get the attributes that will go into a new Record obj
   let timeInput = Math.floor(parseInt(document.querySelector('textarea.text.time-input').value));
@@ -49,12 +60,20 @@ function submitNote() { // get the attributes that will go into a new Record obj
     return;
   }
 
+  localStorage.setItem('05430FP_secsLeft', -1); // this storage is used for determining whether a session has ended for the pause/resume functionality.
   const curDate = new Date().toDateString();
 
   const isCompleted = false;
   const productivity = -1
-  submitNoteBody(curDate, timeInput, isCompleted, productivity);
-  saveTimeInput(timeInput);
+  // submitNoteBody(curDate, timeInput, isCompleted, productivity);
+
+  const noteText = document.querySelector('textarea.text.note-body');
+  const noteTextValue = noteText.value;
+  const record = new Record(curDate, timeInput, noteTextValue, isCompleted, productivity);
+  history.push(record);
+  saveToLocalStorage();
+
+  localStorage.setItem('05430FP_timeInput', timeInput.toString());
   window.location.replace("focus-in-progress.html");
 }
 
@@ -82,15 +101,13 @@ function saveToLocalStorage() {
     localStorage.setItem('05430FP_storedHistory', historyArrayString);
   }
   
-function saveTimeInput(timeInput){
-    localStorage.setItem('05430FP_timeInput', timeInput.toString());
-}
-  
 function retrieveFromLocalStorage() {
     const historyArrayString = localStorage.getItem('05430FP_storedHistory');
     const historyArray = JSON.parse(historyArrayString);
     console.log(historyArray);
-    
-    // createWebRecordElement(curRecord);
-    return historyArray
+    for (const record of historyArray) {
+      const thisRecord = new Record(record.startTime, record.duration, record.note, record.isCompleted, record.productivity);
+      history.push(thisRecord)
+  }
+    // return historyArray
   }

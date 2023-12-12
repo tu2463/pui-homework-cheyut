@@ -15,10 +15,10 @@ function initTimer(timeString) {
 }
 
 function countdownFinished() {
-    curRecord = history[history.length - 1];
+    curRecord = getLastRecordFromHistory();
     curRecord.isCompleted = true;
-    submitNoteBody(curRecord.startTime, curRecord.duration, curRecord.isCompleted, curRecord.productivity);
-    saveToLocalStorage();
+    updateRecordNote(curRecord)
+    localStorage.setItem('05430FP_secsLeft', -1); // this storage is used for determining whether a session has ended for the pause/resume functionality.
     window.location.replace("end.html");
 }
 
@@ -39,28 +39,40 @@ function updateTimerDisplay(minNum, secNum) {
 } 
 
 function updateTimer(minNum, secNum) {
-    secsLeft -= 1;
     minNum = Math.floor(secsLeft / 60);
     secNum = secsLeft % 60;
     updateTimerDisplay(minNum, secNum);
     if (secsLeft == 0) { countdownFinished();}
-    else { setTimeout(updateTimer, 1000);} //?? bug: seems to run faster than /1sec. go to oh.
+    else { 
+        secsLeft -= 1;
+        setTimeout(updateTimer, 1000);} //?? bug: seems to run faster than /1sec. go to oh.
+}
+
+function updateFocusTimerInfo() {
+    const curRecord = getLastRecordFromHistory();
+    const noteBodyElement = document.querySelector('#left .text-group textarea');
+    noteBodyElement.value = curRecord.note;
 }
 
 function updateFocusInProgressInfo() {
-    const curRecord = retrieveHistory();
-    const noteBodyElement = document.querySelector('#left .text-group textarea');
-    noteBodyElement.value = curRecord.note;
-  
-    const timeInput = localStorage.getItem('05430FP_timeInput');
-    initTimer(timeInput.toString() + ":00");
-    // initTimer("00:03");
+    retrieveFromLocalStorage();
+    updateFocusTimerInfo();
+
+    secsLeft = localStorage.getItem('05430FP_secsLeft');
+    if (secsLeft < 0){ // new session. default of secsLeft is -1.
+        const timeInput = localStorage.getItem('05430FP_timeInput');
+        // initTimer(timeInput.toString() + ":00");
+        initTimer("00:02");
+    }
+    else { // resume from pause
+        let minNum = Math.floor(secsLeft / 60);
+        let secNum = secsLeft % 60;
+        initTimer(minNum.toString() + ":" + secNum.toString());
+    }
 }
 
 function updateFocusPauseinfo() {
-    const curRecord = retrieveHistory();
-    const noteBodyElement = document.querySelector('#left .text-group textarea');
-    noteBodyElement.value = curRecord.note;
+    updateFocusTimerInfo();
   
     secsLeft = localStorage.getItem('05430FP_secsLeft');
     let minNum = Math.floor(secsLeft / 60);

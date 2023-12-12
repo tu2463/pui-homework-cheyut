@@ -10,6 +10,7 @@ header {
 .collections {
     display: flex;
     flex-wrap: wrap;
+    margin-top: 54px
 }
 
 .treasure {
@@ -28,8 +29,9 @@ header {
     padding: 7px 15px;
 }
 
-.collections {
-    margin-top: 54px
+.treasure:hover {
+    border: 7px solid #e9d5ca;
+    padding: 7px 15px;
 }
 
 .treasure-title {

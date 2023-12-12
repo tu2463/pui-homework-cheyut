@@ -28,21 +28,11 @@ function createWebRecordElement(record) {
     // connect this clone to our notecard.element
     // from this point we only need to refer to notecard.element
     record.element = clone.querySelector('.right-note');
-    // console.log(rightNoteTemplate);
-    // console.log(clone);
-    // console.log(clone.querySelector('.right-note'));
 
-    // todo: add the left clone to the DOM in history page
-    // add the notecard clone to the DOM
-    // find the notecard parent (#notecard-list) and add our notecard as its child
-    // const notecardListElement = document.querySelector('#notecard-list');
-    // notecardListElement.prepend(notecard.element);
     if (localStorage.getItem('05430FP_curPage') == 'focus-in-progress'){
       const rightRoteParentElement = document.querySelector('#planet.focus');
       rightRoteParentElement.prepend(record.element); // notice the use of "prepend"
     }
-    // populate the notecard clone with the actual notecard content
-    // updateWebRecordElement(record);
   }
 
 // btns
@@ -56,35 +46,52 @@ function homeToHistory() {
 }
 
 function progressToPause() {
-  const curRecord = retrieveHistory();
-  submitNoteBody(curRecord.startTime, curRecord.duration, curRecord.isCompleted, curRecord.productivity);
+  const curRecord = getLastRecordFromHistory();
+  updateRecordNote(curRecord);
   submitTime(secsLeft);
   window.location.replace("focus-pause.html");
 }
 
 function pauseToProgress() {
-  console.log("pa to pr");
+  const curRecord = getLastRecordFromHistory();
+  updateRecordNote(curRecord);
+  submitTime(secsLeft);
+  window.location.replace("focus-in-progress.html");
+}
+
+function pauseToEnd() {
+  const curRecord = getLastRecordFromHistory();
+  const minLeft = Math.floor(secsLeft / 60);
+  curRecord.duration = curRecord.duration - minLeft;
+  updateRecordNote(curRecord);
+  window.location.replace("end.html");
+}
+
+function endToEndTreasure() {
+  const curRecord = getLastRecordFromHistory();
+  updateRecordNote(curRecord);
+  submitProductivity();
+}
+
+function endToHome () {
+  const curRecord = getLastRecordFromHistory();
+  updateRecordNote(curRecord);
+  window.location.replace("index.html");
 }
 
 function endTreasureToHome() {
-  const curRecord = retrieveHistory();
-  submitNoteBody(curRecord.startTime, curRecord.duration, curRecord.isCompleted, curRecord.productivity);
+  const curRecord = getLastRecordFromHistory();
+  updateRecordNote(curRecord);
   submitTreasure();
   // window.location.replace("index.html");
   console.log("go to home");
 }
 
 function endTreasureToCollection() {
-  const curRecord = retrieveHistory();
-  submitNoteBody(curRecord.startTime, curRecord.duration, curRecord.isCompleted, curRecord.productivity);
+  const curRecord = getLastRecordFromHistory();
+  updateRecordNote(curRecord);
   submitTreasure();
   window.location.replace("collection.html");
-}
-
-function endToEndTreasure() {
-  const curRecord = retrieveHistory();
-  submitNoteBody(curRecord.startTime, curRecord.duration, curRecord.isCompleted, curRecord.productivity);
-  submitProductivity();
 }
 
 function collectionToHome() {
@@ -95,17 +102,18 @@ function collectionToHome() {
 let curPage = window.location.pathname.split("/").pop();
 console.log(curPage);
 if (curPage == 'index.html'){
+  retrieveFromLocalStorage();
   const btnCollection = document.querySelector('#planet-button.collection');
   btnCollection.addEventListener('click', () => homeToCollection())
   const btnHistory = document.querySelector('#planet-button.history');
   btnHistory.addEventListener('click', () => homeToHistory())
   const btnInitialize = document.querySelector('#circle-button.initialize');
+  localStorage.getItem('05430FP_storedHistory'); //debug
   btnInitialize.addEventListener('click', () => {
     submitNote();
   });
 }
 else if (curPage == 'focus-in-progress.html') {
-  localStorage.getItem('05430FP_storedHistory'); //debug
   updateFocusInProgressInfo();
   const btnPause = document.querySelector('#circle-button.pause');
   btnPause.addEventListener('click', () => {progressToPause()});
@@ -114,11 +122,19 @@ else if (curPage == 'focus-pause.html') {
   updateFocusPauseinfo();
   const btnResume = document.querySelector('.rec-button.resume');
   btnResume.addEventListener('click', () => {pauseToProgress()});
+  const btnQuit = document.querySelector('.rec-button.quit');
+  btnQuit.addEventListener('click', () => {pauseToEnd()});
 }
 else if (curPage == 'end.html'){
   updateEndInfo();
   const btnProd = document.querySelector('.rec-button.to-end-treasure');
-  btnProd.addEventListener('click', () => {endToEndTreasure()});
+  const curRecord = getLastRecordFromHistory();
+  if (curRecord.isCompleted){
+    btnProd.addEventListener('click', () => {endToEndTreasure()});
+  }
+  else { // if not completed, no treasure discovered for the user
+    btnProd.addEventListener('click', () => {endToHome()});
+  }
 }
 else if (curPage == 'end-treasure.html') {
   updateEndInfo();
