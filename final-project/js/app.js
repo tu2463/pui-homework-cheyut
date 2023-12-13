@@ -10,20 +10,10 @@ class Record {
     }
 }
 
-// function updateWebRecordElement(record) {
-//   console.log(record.element);
-//   const noteBodyElement = record.element.querySelector('.body');
-  
-//   // copy our record content over to the corresponding HTML elements
-//   // LHS: html elemens; RHS: obj content
-//   noteBodyElement.innerText = record.note;
-// }
-
 function createWebRecordElement(record) {
     // make a clone of the notecard template
     const rightNoteTemplate = document.querySelector('#right-note-template');
     const clone = rightNoteTemplate.content.cloneNode(true);
-    // todo: left clone in history page
 
     // connect this clone to our notecard.element
     // from this point we only need to refer to notecard.element
@@ -42,7 +32,7 @@ function homeToCollection() {
 
 function homeToHistory() {
   // window.location.replace("history.html");
-  console.log('to the history!');
+  console.log('Sorry, the history page is yet to be implemented');
 }
 
 function progressToPause() {

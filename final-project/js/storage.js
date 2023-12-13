@@ -29,22 +29,6 @@ function updateRecordNote(record) {
   saveToLocalStorage();
 }
 
-// function addNewRecord(curTime, timeInput, noteTextValue, isCompleted, productivity) {
-//   const record = new Record(curTime, timeInput, noteTextValue, isCompleted, productivity);
-//   history.push(record);
-//   return record;
-// }
-
-// function submitNoteBody(startTime, duration, isCompleted, productivity) { //incomplete yet!!!
-//   const noteText = document.querySelector('textarea.text.note-body');
-//   const noteTextValue = noteText.value;
-
-//   // create new Record obj, add the new Record to set
-//   const record = addNewRecord(startTime, duration, noteTextValue, isCompleted, productivity);
-//   // createWebRecordElement(record); // create the record list showing in history page
-//   saveToLocalStorage();
-// }
-
 function submitNote() { // get the attributes that will go into a new Record obj
   let timeInput = Math.floor(parseInt(document.querySelector('textarea.text.time-input').value));
   if (!timeInput) {
@@ -108,6 +92,5 @@ function retrieveFromLocalStorage() {
     for (const record of historyArray) {
       const thisRecord = new Record(record.startTime, record.duration, record.note, record.isCompleted, record.productivity);
       history.push(thisRecord)
-  }
-    // return historyArray
+    }
   }

@@ -45,7 +45,7 @@ function updateTimer(minNum, secNum) {
     if (secsLeft == 0) { countdownFinished();}
     else { 
         secsLeft -= 1;
-        setTimeout(updateTimer, 1000);} //?? bug: seems to run faster than /1sec. go to oh.
+        setTimeout(updateTimer, 1000);} //?? seems to run faster than /1sec. go to oh.
 }
 
 function updateFocusTimerInfo() {
@@ -61,8 +61,8 @@ function updateFocusInProgressInfo() {
     secsLeft = localStorage.getItem('05430FP_secsLeft');
     if (secsLeft < 0){ // new session. default of secsLeft is -1.
         const timeInput = localStorage.getItem('05430FP_timeInput');
-        // initTimer(timeInput.toString() + ":00");
-        initTimer("00:02");
+        initTimer(timeInput.toString() + ":00");
+        // initTimer("00:02");
     }
     else { // resume from pause
         let minNum = Math.floor(secsLeft / 60);
