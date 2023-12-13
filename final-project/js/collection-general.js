@@ -88,26 +88,30 @@ function makeTreasureClone(thisTreasure){
 
 function updateCollectionInfo() {
     // retrieve collections from storage
-    const collectionsArrayString = localStorage.getItem('05430FP_storedCollections');
-    const collectionsIndexArrayString = localStorage.getItem('05430FP_storedCollectionsIndex');
-    const collectionsArray = JSON.parse(collectionsArrayString);
-    const collectionsIndexArray = JSON.parse(collectionsIndexArrayString);
-    console.log(collectionsArray, collectionsIndexArray); 
-  
-    // re-add indices
-    for (let i = 0; i < collectionsIndexArray.length; i++){
-      const treasureIndex = collectionsIndexArray[i];
-      collectionsIndex.add(treasureIndex);
-    }
+    if (localStorage.getItem('05430FP_storedCollections') != null
+      && localStorage.getItem('05430FP_storedCollectionsIndex') != null){
+      retrieveFromLocalStorage();
+      const collectionsArrayString = localStorage.getItem('05430FP_storedCollections');
+      const collectionsIndexArrayString = localStorage.getItem('05430FP_storedCollectionsIndex');
+      const collectionsArray = JSON.parse(collectionsArrayString);
+      const collectionsIndexArray = JSON.parse(collectionsIndexArrayString);
+      console.log(collectionsArray, collectionsIndexArray); 
+    
+      // re-add indices
+      for (let i = 0; i < collectionsIndexArray.length; i++){
+        const treasureIndex = collectionsIndexArray[i];
+        collectionsIndex.add(treasureIndex);
+      }
 
-    // re-add treasures to collections
-    for (let i = 0; i < collectionsArray.length; i++){
-      const treasure = collectionsArray[i];
-      const thisTreasure = new Treasure(treasure.id, treasure.category, 
-        treasure.title, treasure.body, treasure.read, treasure.date);
-      collections.push(thisTreasure);
-      makeTreasureClone(thisTreasure);
+      // re-add treasures to collections
+      for (let i = 0; i < collectionsArray.length; i++){
+        const treasure = collectionsArray[i];
+        const thisTreasure = new Treasure(treasure.id, treasure.category, 
+          treasure.title, treasure.body, treasure.read, treasure.date);
+        collections.push(thisTreasure);
+        makeTreasureClone(thisTreasure);
+      }
+      console.log(collections, collectionsIndex);
+      updateCollectionPlanetElement(collections[0]);
     }
-    console.log(collections, collectionsIndex);
-    updateCollectionPlanetElement(collections[0]);
   }

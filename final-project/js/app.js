@@ -92,7 +92,9 @@ function collectionToHome() {
 let curPage = window.location.pathname.split("/").pop();
 console.log(curPage);
 if (curPage == 'index.html'){
-  retrieveFromLocalStorage();
+  if (localStorage.getItem('05430FP_storedHistory') != null){
+    retrieveFromLocalStorage();
+  }
   const btnCollection = document.querySelector('#planet-button.collection');
   btnCollection.addEventListener('click', () => homeToCollection())
   const btnInitialize = document.querySelector('#circle-button.initialize');
