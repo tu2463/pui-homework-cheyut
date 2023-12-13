@@ -95,8 +95,6 @@ if (curPage == 'index.html'){
   retrieveFromLocalStorage();
   const btnCollection = document.querySelector('#planet-button.collection');
   btnCollection.addEventListener('click', () => homeToCollection())
-  const btnHistory = document.querySelector('#planet-button.history');
-  btnHistory.addEventListener('click', () => homeToHistory())
   const btnInitialize = document.querySelector('#circle-button.initialize');
   localStorage.getItem('05430FP_storedHistory'); //debug
   btnInitialize.addEventListener('click', () => {

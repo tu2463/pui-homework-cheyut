@@ -72,6 +72,7 @@ function updateFocusInProgressInfo() {
 }
 
 function updateFocusPauseinfo() {
+    retrieveFromLocalStorage();
     updateFocusTimerInfo();
   
     secsLeft = localStorage.getItem('05430FP_secsLeft');

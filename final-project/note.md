@@ -1,4 +1,4 @@
-next steps:
+next steps to improve:
 #1
 - collecion.html - clones are not correct
 - history
@@ -7,6 +7,7 @@ next steps:
 - pause: confirm page for quit
 - pause/resume/stop in midn
     - if < 10min, go to notice page, don't save
-- check treasure random sys
+- check treasure random
+- instruction page
 - collection, home: unread collection notice
 - collection: treasure selection enlarge/shrink trigger

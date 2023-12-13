@@ -68,6 +68,10 @@ textarea::placeholder {
 
 /* general layout*/
 
+#left-top {
+    height: 78px;
+}
+
 #left {
     width: 495px;
     /* background: grey; */

@@ -13,15 +13,15 @@ class Treasure {
   }
   
 const treasures = {
-    1: {category: "c_1", title: "11111111", body: "b_1"},
-    2: {category: "c_2", title: "22222222", body: "b_2"},
-    3: {category: "c_3", title: "33333333", body: "b_3"},
-    4: {category: "c_4", title: "44444444", body: "b_4"},
-    5: {category: "c_5", title: "55555555", body: "b_5"},
-    6: {category: "c_6", title: "66666666", body: "b_6"},
-    7: {category: "c_7", title: "77777777", body: "b_7"},
-    8: {category: "c_8", title: "88888888", body: "b_8"},
-    9: {category: "c_9", title: "99999999", body: "b_9"},
+    1: {category: "c_1", title: "Arthur C. Clarke", body: "“Two possibilities exist: either we are alone in the Universe or we are not. Both are equally terrifying.”"},
+    2: {category: "c_2", title: "Madeleine L'Engle", body: "“A book, too, can be a star, a living fire to lighten the darkness, leading out into the expanding universe.”"},
+    3: {category: "c_3", title: "Arthur C. Clarke", body: "“I'm sure the universe is full of intelligent life. It's just been too intelligent to come here.”"},
+    4: {category: "c_4", title: "Benjamin Alire Sáenz", body: "“I bet you could sometimes find all the mysteries of the universe in someone's hand.”"},
+    5: {category: "c_5", title: "Albert Einstein", body: "“Two things are infinite: the universe and human stupidity; and I'm not sure about the universe.”"},
+    6: {category: "c_6", title: "Rachel Carson", body: "“The more clearly we can focus our attention on the wonders and realities of the universe about us, the less taste we shall have for destruction.”"},
+    7: {category: "c_7", title: "Diane Duane", body: "“The universe is a pretty big place. If it's just us, seems like an awful waste of space.”"},
+    8: {category: "c_8", title: "Carl Sagan", body: "“The magic is only in what books say, how they stitched the patches of the universe together into one garment for us.”"},
+    9: {category: "c_9", title: "Ray Bradbury", body: "“We are an impossibility in an impossible universe.”"},
   };
   
 const collections = [];
