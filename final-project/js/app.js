@@ -1,7 +1,9 @@
 class Record {
-    constructor(startTime, duration, note, isCompleted, productivity) {
-        this.startTime = startTime;
-        this.duration =  duration; // expected duration that the user set before starting a focus session; will change if the user doesn't finish the whole session.
+    constructor(startDate, startHour, startMin, duration, note, isCompleted, productivity) {
+        this.startDate = startDate;
+        this.startHour = startHour;
+        this.startMin = startMin;
+        this.duration = duration; // expected duration that the user set before starting a focus session; will change if the user doesn't finish the whole session.
         this.note = note;
         this.isCompleted = isCompleted;
         this.productivity = productivity;
@@ -31,8 +33,12 @@ function homeToCollection() {
 }
 
 function homeToHistory() {
-  // window.location.replace("history.html");
-  console.log('Sorry, the history page is yet to be implemented');
+  if (history.length == 0) {
+    window.location.replace("history.html?status=empty");
+  }
+  else {
+      window.location.replace("history.html");
+  }
 }
 
 function progressToPause() {
@@ -72,7 +78,6 @@ function endToHome () {
 function endTreasureToHome() {
   const curRecord = getLastRecordFromHistory();
   updateRecordNote(curRecord);
-  submitTreasure();
   // window.location.replace("index.html");
   console.log("go to home");
 }
@@ -80,11 +85,14 @@ function endTreasureToHome() {
 function endTreasureToCollection() {
   const curRecord = getLastRecordFromHistory();
   updateRecordNote(curRecord);
-  submitTreasure();
   window.location.replace("collection.html");
 }
 
 function collectionToHome() {
+  window.location.replace("index.html");
+}
+
+function historyToHome() {
   window.location.replace("index.html");
 }
 
@@ -97,6 +105,8 @@ if (curPage == 'index.html'){
   }
   const btnCollection = document.querySelector('#planet-button.collection');
   btnCollection.addEventListener('click', () => homeToCollection())
+  const btnHistory = document.querySelector('#planet-button.history');
+  btnHistory.addEventListener('click', () => homeToHistory())
   const btnInitialize = document.querySelector('#circle-button.initialize');
   localStorage.getItem('05430FP_storedHistory'); //debug
   btnInitialize.addEventListener('click', () => {
@@ -120,6 +130,7 @@ else if (curPage == 'end.html'){
   const btnProd = document.querySelector('.rec-button.to-end-treasure');
   const curRecord = getLastRecordFromHistory();
   if (curRecord.isCompleted){
+    submitTreasure();
     btnProd.addEventListener('click', () => {endToEndTreasure()});
   }
   else { // if not completed, no treasure discovered for the user
@@ -137,6 +148,11 @@ else if (curPage == 'collection.html'){
   updateCollectionInfo();
   const btnBack = document.querySelector('#planet-button.back');
   btnBack.addEventListener('click', () => (collectionToHome()));
+}
+else if (curPage == 'history.html' || curPage == 'history.html?status=empty'){
+  updateHistoryInfo();
+  const btnBack = document.querySelector('#planet-button.back');
+  btnBack.addEventListener('click', () => (historyToHome()));
 }
 
 // animation

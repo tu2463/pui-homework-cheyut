@@ -2,38 +2,6 @@ const history = [];
 const collections = [];
 const collectionsIndex = new Set();
 
-function updateEndInfo() {
-    retrieveHistoryFromLocalStorage();
-    const curRecord = getLastRecordFromHistory();
-    const noteBodyElement = document.querySelector('#left .text-group textarea');
-    noteBodyElement.value = curRecord.note;
-    const minElement = document.querySelector('#minutes');
-    minElement.innerText = curRecord.duration + " min";
-}
-
-function updateEndTreasureInfo() {
-  retrieveHistoryFromLocalStorage();
-  const curRecord = getLastRecordFromHistory();
-  const noteBodyElement = document.querySelector('#left .text-group textarea');
-  noteBodyElement.value = curRecord.note;
-  const minElement = document.querySelector('#minutes');
-  minElement.innerText = curRecord.duration + " min";
-
-  if (localStorage.getItem('05430FP_storedCollections') != null
-    && localStorage.getItem('05430FP_storedCollections') != null){
-    retrieveCollectionFromLocalStorage();
-  }
-}
-
-// function retrieveHistory(){
-//     const historyArray = retrieveHistoryFromLocalStorage();
-//     const curRecordData = historyArray.slice(-1)[0];
-//     const curRecord = addNewRecord(curRecordData.startTime, curRecordData.duration, 
-//       curRecordData.note, curRecordData.isCompleted, curRecordData.productivity);
-//     console.log(curRecord);
-//     return curRecord;
-// }
-
 function getLastRecordFromHistory() {
   return history[history.length - 1];
 }
@@ -62,14 +30,15 @@ function submitNote() { // get the attributes that will go into a new Record obj
 
   localStorage.setItem('05430FP_secsLeft', -1); // this storage is used for determining whether a session has ended for the pause/resume functionality.
   const curDate = new Date().toDateString();
+  const curHour = new Date().getHours();
+  const curMin = new Date().getMinutes();
 
   const isCompleted = false;
   const productivity = -1
-  // submitNoteBody(curDate, timeInput, isCompleted, productivity);
 
   const noteText = document.querySelector('textarea.text.note-body');
   const noteTextValue = noteText.value;
-  const record = new Record(curDate, timeInput, noteTextValue, isCompleted, productivity);
+  const record = new Record(curDate, curHour, curMin, timeInput, noteTextValue, isCompleted, productivity);
   history.push(record);
   saveHistoryToLocalStorage();
 
@@ -105,7 +74,7 @@ function retrieveHistoryFromLocalStorage() {
   const historyArray = JSON.parse(historyArrayString);
   console.log("retrieved history: ", historyArray);
   for (const record of historyArray) {
-    const thisRecord = new Record(record.startTime, record.duration, record.note, record.isCompleted, record.productivity);
+    const thisRecord = new Record(record.startDate, record.startHour, record.startMin, record.duration, record.note, record.isCompleted, record.productivity);
     history.push(thisRecord)
   }
 }

@@ -21,7 +21,7 @@ textarea {
     padding: 14px 22px;
     border: none;
     border-radius: 15px;
-    background: rgba(233, 213, 202, 0.5);
+    background: rgba(233, 213, 202, 0.25);
     width: 100%;
     
     font-family: Antic;
@@ -49,7 +49,7 @@ textarea::placeholder {
     width: 142px;
     padding: 14px 22px;
     text-align: center;
-    background: rgba(233, 213, 202, 0.5);
+    background: rgba(233, 213, 202, 0.25);
     border-radius: 15px;
     border: none;
     margin: 14.5px auto auto auto;
@@ -128,12 +128,11 @@ img{
 #circle-button {
     height: 127px;
     width: 127px;
-    /* margin-left: auto;
-    margin-right: auto; */
     margin: 20px auto auto auto;
 }
 
-.text {
+/* text that are inside a textbox */
+.text { 
     margin-top: 14.5px;
     margin-bottom: 14.5px;
 }

@@ -1,0 +1,94 @@
+/* collection and history */
+#catalog {
+    margin: 90px auto auto 51px;
+}
+
+header {
+    font-size: 24px;
+    font-style: italic;
+}
+
+.collections {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 54px
+}
+
+.planet-content.other-content {
+    top: 10%;
+}
+
+.display {
+    width: 431px;
+}
+
+.body, textarea.history{
+    margin-top: 29px;
+    box-sizing: border-box;
+    background: rgba(233, 213, 202, 0.25);
+    width: 100%;
+    height: 395px;
+
+    font-family: "Antic Didone";
+    text-align: justify;
+}
+
+.treasure, .record-textgroup {
+    box-sizing: border-box;
+    padding: 14px 22px;
+    border: none;
+    background: rgba(233, 213, 202, 0.25);
+    margin-right: 29px;
+    margin-bottom: 29px;
+}
+
+.treasure:active, .record-textgroup:active {
+    border: 7px solid #e9d5ca;
+    padding: 7px 15px;
+}
+
+.treasure:hover, .record-textgroup:hover{
+    border: 7px solid #e9d5ca;
+    padding: 7px 15px;
+}
+
+/* collection */
+.treasure {
+    width: 125px;
+    height: 125px;
+    border-radius: 15px;
+}
+
+.treasure-title {
+    margin-top: 23px;
+    width: 100%;
+    overflow-wrap: break-word;
+    font-style: italic;
+}
+
+.body {
+    border: 7px solid #e9d5ca;
+    padding: 7px 15px;
+    border-radius: 21px;
+}
+
+.date {
+    margin-top: 17px;
+    font-size: 18px;
+    color: rgba(233, 213, 202, 0.5);
+}
+
+/* history */
+.record-date {
+    margin-left: 18px;
+}
+
+.record-textgroup {
+    width: 431px;
+    height: 64px;
+    border-radius: 21px;
+    display: flex;
+    margin-top: 14px;
+    margin-bottom: 24px;
+    justify-content: space-between;
+}

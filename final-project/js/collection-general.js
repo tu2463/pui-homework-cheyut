@@ -14,7 +14,7 @@ class Treasure {
   
 const treasures = {
     1: {category: "c_1", title: "Arthur Clarke", body: "“Two possibilities exist: either we are alone in the Universe or we are not. Both are equally terrifying.”"},
-    2: {category: "c_2", title: "Ray Bradbury", body: "“We are an impossibility in an impossible universe.”"},
+    2: {category: "c_2", title: "R. Bradbury", body: "“We are an impossibility in an impossible universe.”"},
     3: {category: "c_8", title: "Carl Sagan", body: "“The magic is only in what books say, how they stitched the patches of the universe together into one garment for us.”"},
     4: {category: "c_4", title: "B. Sáenz", body: "“I bet you could sometimes find all the mysteries of the universe in someone's hand.”"},
     5: {category: "c_5", title: "A. Einstein", body: "“Two things are infinite: the universe and human stupidity; and I'm not sure about the universe.”"},
@@ -24,7 +24,7 @@ const treasures = {
 
 const treasuresByTitle = {
   "Arthur Clarke": {id: 1, category: "c_1", body: "“Two possibilities exist: either we are alone in the Universe or we are not. Both are equally terrifying.”"},
-  "Ray Bradbury": {id: 2, category: "c_2", body: "“We are an impossibility in an impossible universe.”"},
+  "R. Bradbury": {id: 2, category: "c_2", body: "“We are an impossibility in an impossible universe.”"},
   "Carl Sagan": {id: 3, category: "c_8", body: "“The magic is only in what books say, how they stitched the patches of the universe together into one garment for us.”"},
   "B. Sáenz": {id: 4, category: "c_4", body: "“I bet you could sometimes find all the mysteries of the universe in someone's hand.”"},
   "A. Einstein": {id: 5, category: "c_5", body: "“Two things are infinite: the universe and human stupidity; and I'm not sure about the universe.”"},
@@ -34,11 +34,6 @@ const treasuresByTitle = {
 
 function submitTreasure() {
     // get a random treasure from the full treasure catalog
-    // if (localStorage.getItem('05430FP_storedCollections') != null
-    //   && localStorage.getItem('05430FP_storedCollections') != null){
-    //   retrieveCollectionFromLocalStorage();
-    // }
-
     const id = Math.floor(Math.random() * (Object.keys(treasures).length - 1) + 1); // min = 0*(l-1)+1 = 1; max = 1*(l-1)+1 = l
     
     if (collectionsIndex.has(id)){

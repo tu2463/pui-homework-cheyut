@@ -80,3 +80,26 @@ function updateFocusPauseinfo() {
     let secNum = secsLeft % 60;
     updateTimerDisplay(minNum, secNum);
 }
+
+function updateEndInfo() {
+    retrieveHistoryFromLocalStorage();
+    const curRecord = getLastRecordFromHistory();
+    const noteBodyElement = document.querySelector('#left .text-group textarea');
+    noteBodyElement.value = curRecord.note;
+    const minElement = document.querySelector('#minutes');
+    minElement.innerText = curRecord.duration + " min";
+
+    if (localStorage.getItem('05430FP_storedCollections') != null
+    && localStorage.getItem('05430FP_storedCollections') != null){
+      retrieveCollectionFromLocalStorage(); 
+    }
+}
+
+function updateEndTreasureInfo() {
+    retrieveHistoryFromLocalStorage();
+    const curRecord = getLastRecordFromHistory();
+    const noteBodyElement = document.querySelector('#left .text-group textarea');
+    noteBodyElement.value = curRecord.note;
+    const minElement = document.querySelector('#minutes');
+    minElement.innerText = curRecord.duration + " min";
+}
