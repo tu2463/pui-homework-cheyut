@@ -93,7 +93,7 @@ let curPage = window.location.pathname.split("/").pop();
 console.log(curPage);
 if (curPage == 'index.html'){
   if (localStorage.getItem('05430FP_storedHistory') != null){
-    retrieveFromLocalStorage();
+    retrieveHistoryFromLocalStorage();
   }
   const btnCollection = document.querySelector('#planet-button.collection');
   btnCollection.addEventListener('click', () => homeToCollection())
@@ -127,7 +127,7 @@ else if (curPage == 'end.html'){
   }
 }
 else if (curPage == 'end-treasure.html') {
-  updateEndInfo();
+  updateEndTreasureInfo();
   const btnSave = document.querySelector('.rec-button.to-home');
   btnSave.addEventListener('click', () => (endTreasureToHome()));
   const btnTreasure = document.querySelector('.treasure');

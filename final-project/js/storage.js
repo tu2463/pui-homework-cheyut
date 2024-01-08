@@ -1,7 +1,9 @@
 const history = [];
+const collections = [];
+const collectionsIndex = new Set();
 
 function updateEndInfo() {
-    retrieveFromLocalStorage();
+    retrieveHistoryFromLocalStorage();
     const curRecord = getLastRecordFromHistory();
     const noteBodyElement = document.querySelector('#left .text-group textarea');
     noteBodyElement.value = curRecord.note;
@@ -9,14 +11,28 @@ function updateEndInfo() {
     minElement.innerText = curRecord.duration + " min";
 }
 
-function retrieveHistory(){
-    const historyArray = retrieveFromLocalStorage();
-    const curRecordData = historyArray.slice(-1)[0];
-    const curRecord = addNewRecord(curRecordData.startTime, curRecordData.duration, 
-      curRecordData.note, curRecordData.isCompleted, curRecordData.productivity);
-    console.log(curRecord);
-    return curRecord;
+function updateEndTreasureInfo() {
+  retrieveHistoryFromLocalStorage();
+  const curRecord = getLastRecordFromHistory();
+  const noteBodyElement = document.querySelector('#left .text-group textarea');
+  noteBodyElement.value = curRecord.note;
+  const minElement = document.querySelector('#minutes');
+  minElement.innerText = curRecord.duration + " min";
+
+  if (localStorage.getItem('05430FP_storedCollections') != null
+    && localStorage.getItem('05430FP_storedCollections') != null){
+    retrieveCollectionFromLocalStorage();
+  }
 }
+
+// function retrieveHistory(){
+//     const historyArray = retrieveHistoryFromLocalStorage();
+//     const curRecordData = historyArray.slice(-1)[0];
+//     const curRecord = addNewRecord(curRecordData.startTime, curRecordData.duration, 
+//       curRecordData.note, curRecordData.isCompleted, curRecordData.productivity);
+//     console.log(curRecord);
+//     return curRecord;
+// }
 
 function getLastRecordFromHistory() {
   return history[history.length - 1];
@@ -26,7 +42,7 @@ function updateRecordNote(record) {
   const noteText = document.querySelector('textarea.text.note-body');
   const noteTextValue = noteText.value;
   record.note = noteTextValue;
-  saveToLocalStorage();
+  saveHistoryToLocalStorage();
 }
 
 function submitNote() { // get the attributes that will go into a new Record obj
@@ -55,7 +71,7 @@ function submitNote() { // get the attributes that will go into a new Record obj
   const noteTextValue = noteText.value;
   const record = new Record(curDate, timeInput, noteTextValue, isCompleted, productivity);
   history.push(record);
-  saveToLocalStorage();
+  saveHistoryToLocalStorage();
 
   localStorage.setItem('05430FP_timeInput', timeInput.toString());
   window.location.replace("focus-in-progress.html");
@@ -72,25 +88,58 @@ function submitProductivity() {
   }
   const curRecord = history[history.length - 1];
   curRecord.productivity = productivity;
-  saveToLocalStorage();
+  saveHistoryToLocalStorage();
   window.location.replace("end-treasure.html");
 }
 
-
-function saveToLocalStorage() {
-    const historyArray = Array.from(history);
-    console.log(historyArray);
-    
-    const historyArrayString = JSON.stringify(historyArray);
-    localStorage.setItem('05430FP_storedHistory', historyArrayString);
-  }
+function saveHistoryToLocalStorage() {
+  const historyArray = Array.from(history);
+  console.log("saved history: ", historyArray);
   
-function retrieveFromLocalStorage() {
-    const historyArrayString = localStorage.getItem('05430FP_storedHistory');
-    const historyArray = JSON.parse(historyArrayString);
-    console.log(historyArray);
-    for (const record of historyArray) {
-      const thisRecord = new Record(record.startTime, record.duration, record.note, record.isCompleted, record.productivity);
-      history.push(thisRecord)
-    }
+  const historyArrayString = JSON.stringify(historyArray);
+  localStorage.setItem('05430FP_storedHistory', historyArrayString);
+}
+
+function retrieveHistoryFromLocalStorage() {
+  const historyArrayString = localStorage.getItem('05430FP_storedHistory');
+  const historyArray = JSON.parse(historyArrayString);
+  console.log("retrieved history: ", historyArray);
+  for (const record of historyArray) {
+    const thisRecord = new Record(record.startTime, record.duration, record.note, record.isCompleted, record.productivity);
+    history.push(thisRecord)
   }
+}
+
+function saveCollectionToLocalStorage() {
+  const collectionsArray = Array.from(collections);
+  const collectionsIndexArray = Array.from(collectionsIndex);
+  console.log(collections, collectionsIndex);
+  
+  const collectionsArrayString = JSON.stringify(collectionsArray);
+  const collectionsIndexArrayString = JSON.stringify(collectionsIndexArray);
+  localStorage.setItem('05430FP_storedCollections', collectionsArrayString);
+  localStorage.setItem('05430FP_storedCollectionsIndex', collectionsIndexArrayString);
+}
+
+function retrieveCollectionFromLocalStorage() {
+  const collectionsArrayString = localStorage.getItem('05430FP_storedCollections');
+  const collectionsIndexArrayString = localStorage.getItem('05430FP_storedCollectionsIndex');
+  const collectionsArray = JSON.parse(collectionsArrayString);
+  const collectionsIndexArray = JSON.parse(collectionsIndexArrayString);
+    
+  // re-add indices
+  for (let i = 0; i < collectionsIndexArray.length; i++){
+    const treasureIndex = collectionsIndexArray[i];
+    collectionsIndex.add(treasureIndex);
+  }
+
+  // re-add treasures to collections
+  for (let i = 0; i < collectionsArray.length; i++){
+    const treasure = collectionsArray[i];
+    const thisTreasure = new Treasure(treasure.id, treasure.category, 
+      treasure.title, treasure.body, treasure.read, treasure.date);
+    collections.push(thisTreasure);
+  }
+  console.log("collections & cur index", collections, collectionsIndex);
+  
+}

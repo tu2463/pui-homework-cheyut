@@ -1,6 +1,6 @@
 next steps to improve:
 #1
-- collecion.html - clones are not correct
+- end: display treasure only if 1. completed session 2. not repeated
 - history
 
 #2
@@ -10,4 +10,4 @@ next steps to improve:
 - check treasure random
 - instruction page
 - collection, home: unread collection notice
-- collection: treasure selection enlarge/shrink trigger
+- storage: clear single/multiple/all record (with treasure)

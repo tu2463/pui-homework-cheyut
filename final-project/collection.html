@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/collection.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script defer src="js/storage.js"></script>
     <script defer src="js/collection-general.js"></script>
     <script defer src="js/app.js"></script>
   </head>
@@ -18,7 +19,7 @@
                 <br><br>You will discover more stories as you finish your focus sessions.</header>
             <section class = "collections">
                 <template class = "treasure-template">
-                    <div class = "treasure">
+                    <div class = "treasure" onclick = "updateCollectionPlanetElement(window.getSelection())">
                         <div class = "treasure-title">p_title</div>
                     </div>
                 </template>
@@ -33,10 +34,10 @@
                 <div class = "planet-content treasure-content">
                     <div class = "treasure-display">
                         <div class = "title">
-                            Welcome to your collection
+                            Welcome to your collection.
                         </div>
                         <div class = "body">
-                            Keep up your good work and then you will discover treasure!
+                            Keep up your good work and then you will discover treasures!
                         </div>
                         <div class = "date">
                             :D

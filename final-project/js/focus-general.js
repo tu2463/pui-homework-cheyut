@@ -55,14 +55,14 @@ function updateFocusTimerInfo() {
 }
 
 function updateFocusInProgressInfo() {
-    retrieveFromLocalStorage();
+    retrieveHistoryFromLocalStorage();
     updateFocusTimerInfo();
 
     secsLeft = localStorage.getItem('05430FP_secsLeft');
     if (secsLeft < 0){ // new session. default of secsLeft is -1.
         const timeInput = localStorage.getItem('05430FP_timeInput');
-        initTimer(timeInput.toString() + ":00");
-        // initTimer("00:02");
+        // initTimer(timeInput.toString() + ":00");
+        initTimer("00:02");
     }
     else { // resume from pause
         let minNum = Math.floor(secsLeft / 60);
@@ -72,7 +72,7 @@ function updateFocusInProgressInfo() {
 }
 
 function updateFocusPauseinfo() {
-    retrieveFromLocalStorage();
+    retrieveHistoryFromLocalStorage();
     updateFocusTimerInfo();
   
     secsLeft = localStorage.getItem('05430FP_secsLeft');
